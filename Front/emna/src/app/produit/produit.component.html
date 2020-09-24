@@ -1,0 +1,86 @@
+
+  <div class="box-body">
+    <div class="row" >
+      <div class="col-md-3" *ngIf="est_plan_log">
+        <div class="form-group">
+          <label>Article</label>
+          <input type="text" class="form-control" required [(ngModel)]="produit.article" name="article">
+        </div>
+        <!-- /.form-group -->
+      </div>
+      <!-- /.col -->
+      <div class="col-md-3" *ngIf="est_plan_log">
+        <div class="form-group">
+          <label>Quantité</label>
+          <input type="text" class="form-control"  required [(ngModel)]="produit.quantite" name="quantite">
+        </div>
+      </div>
+
+      <div class="col-md-3" *ngIf="est_plan_log">
+        <div class="form-group">
+          <label>Type</label>
+          <input type="text" class="form-control" required [(ngModel)]="produit.type" name="type">
+        </div>
+      </div>
+
+
+      <div class="col-md-1">
+        <div class="form-group" >
+          <label></label>
+          <input *ngIf="est_plan_log"  type="button" class="btn btn-primary" value="{{action}}" (click)="ajouterProduit()">
+          <input *ngIf="!est_plan_log" type="button" class="btn btn-primary" value="{{action2}}" (click)="modifierProduits()">
+        </div>
+      </div>
+      
+      <!-- /.col -->
+    </div>
+    
+    <!-- /.row -->
+  </div>
+  
+  
+
+<div class="box">
+  <!-- /.box-header -->
+  <div class="box-body">
+    <table id="example1" class="table table-bordered table-striped">
+      <thead>
+      <tr>
+        <th *ngIf="affiche"></th>
+        <th>ID</th>
+        <th>Article</th>
+        <th>Quantité</th>
+        <th>Type</th>
+        <th *ngIf="!est_plan_log">Periorite</th>
+        <th *ngIf="est_plan_log">Actions</th>
+      </tr> 
+      </thead>
+      <tbody>
+      <tr *ngFor="let prod of produits | async " >
+        <ng-container *ngIf="prod.odp.id == id_odp">
+        <td *ngIf="affiche">
+          <div class="form-check">
+            <input *ngIf="prod.periorite" (change)="changed(prod)" class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="..." checked>
+            <input *ngIf="!prod.periorite" (change)="changed(prod)" class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
+          </div>
+        </td>
+        <td>{{prod.id}}</td>
+        <td>{{prod.article}}</td>
+        <td>{{prod.quantite}}</td>
+        <td> {{prod.type}}</td>
+        <td *ngIf="!est_plan_log"> {{getPeriotitaire(prod.periorite)}}</td>
+        <td *ngIf="est_plan_log">
+          <li class="list-inline-item">
+            <button (click)="initProduit(prod)" class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></button>
+        </li>
+        <li class="list-inline-item">
+            <button (click)="supprimerProduit(prod.id)" class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>
+        </td>
+      </ng-container>
+      </tr>
+      </tbody>
+
+    </table>
+  </div>
+  <!-- /.box-body -->
+</div>

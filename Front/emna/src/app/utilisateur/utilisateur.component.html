@@ -1,0 +1,154 @@
+
+      <!-- /.modal-dialog -->
+      <div class="box">
+        <!-- /.box-header -->
+
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="box box-default">
+              <div class="box-header with-border">
+
+              </div>
+              <div class="box-body">
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-default">
+                  Ajouter un utilisateur
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+          <div class="modal fade" id="modal-default">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title">{{action}}</h4>
+                </div>
+                <div class="modal-body">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Matricule</label>
+                        <input type="text" class="form-control" id="inputEmail3"  required [(ngModel)]="utilisateur.matricule" name="matricule">
+                      </div>
+                      <!-- /.form-group -->
+                      <div class="form-group">
+                        <label>Nom</label>
+                        <input type="text" class="form-control" id="inputEmail3"  required [(ngModel)]="utilisateur.nom" name="nom">
+                      </div>
+                      <!-- /.form-group -->
+                    </div>
+      
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Prenom</label>
+                        <input type="text" class="form-control" id="inputEmail3"  required [(ngModel)]="utilisateur.prenom" name="prenom">
+                      </div>
+                      <!-- /.form-group -->
+                      <div class="form-group">
+                        <label>Mot de passe</label>
+                        <input type="password" class="form-control" id="inputEmail3"  required [(ngModel)]="utilisateur.mdp" name="mdp">
+                      </div>
+                      <!-- /.form-group -->
+                    </div>
+      
+      
+                    <!-- /.col -->
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Age</label>
+                        <input type="text" class="form-control" id="inputEmail3"  required [(ngModel)]="utilisateur.age" name="age">
+                      </div>
+                      <!-- /.form-group -->
+                      <div class="form-group">
+                        <label>Sexe</label>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"  checked [(ngModel)]="utilisateur.sexe" value="Homme">
+                          <label class="form-check-label" for="exampleRadios1">
+                            Homme
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2"   [(ngModel)]="utilisateur.sexe" value="Femme">
+                          <label class="form-check-label" for="exampleRadios2">
+                            Femme
+                          </label>
+                        </div>
+                        
+                      </div>
+                      <!-- /.form-group -->
+                    </div>
+                    <!-- /.col -->
+                                  <!-- /.col -->
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Poste</label>
+                        <div class="form-group">
+                          <select class="form-control select2" style="width: 100%;"  [(ngModel)]="utilisateur.poste">
+                            <option selected="selected" value="Resp-Mag">Resp-Mag</option>
+                            <option value="Plan-Log">Plan-Log</option>
+                            <option value="Tech-Log">Tech-Log</option>
+                            <option value="Magasinier">Magasinier</option>
+                            <option value="Admin">Admin</option>
+                            <option value="Resp-Prod">Resp-Prod</option>
+                          </select>
+                        </div>
+                      </div>
+                      <!-- /.form-group -->
+      
+                      <!-- /.form-group -->
+                    </div>
+                  </div>
+      
+      
+                  
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
+                  <button type="button" class="btn btn-primary" (click)="ajouterUtilisateur()"  data-dismiss="modal">{{action}}</button>
+                </div>
+              </div>
+              <!-- /.modal-content -->
+            </div>
+    </div>
+
+    
+    <div class="box-body">
+      <table id="example1" class="table table-bordered table-striped">
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>Matricule</th>
+          <th>Nom</th>
+          <th>Prenom</th>
+          <th>Age</th>
+          <th>Sexe</th>
+          <th>Poste</th>
+          <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let user of utilisateurs | async " >
+          <td>{{user.id}}</td>
+          <td>{{user.matricule}}</td>
+          <td>{{user.nom}}</td>
+          <td> {{user.prenom}}</td>
+          <td> {{user.age}}</td>
+          <td> {{user.sexe}}</td>
+          <td> {{user.poste}}</td>
+          <td>
+            <li class="list-inline-item">
+              <button (click)="initUtilisateur(user)"  type="button" class="btn btn-success btn-sm rounded-0" data-toggle="modal" data-target="#modal-default">
+                <i class="fa fa-edit"></i>
+              </button>
+            </li>
+          <li class="list-inline-item">
+              <button (click)="supprimerUtilisateur(user.id)" class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>
+          </td>
+        </tr>
+        </tbody>
+  
+      </table>
+    </div>
