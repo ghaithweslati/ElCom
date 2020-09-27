@@ -3,7 +3,6 @@ package org.glsid.metier;
 import java.util.List;
 import org.glsid.beans.Odp;
 import org.glsid.dao.OdpRepository;
-import org.glsid.dao.ProduitRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

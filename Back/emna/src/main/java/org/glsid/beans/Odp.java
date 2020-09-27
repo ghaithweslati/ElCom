@@ -9,40 +9,55 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
-@Entity(name="odp")
+@SuppressWarnings("unused")
+@Entity
 public class Odp implements Serializable {
 	
-	
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id_odp")
+	@Column(name = "id_odp", unique = true, nullable = false)
 	private Long id;
+
+	
+	@Column
+	private int quantite;
+	
+	@Column
+	private String description;
+	
 	
 	@Column
 	private String date;
+	
+
+	@Column
+	private Article article;
+	
 
 
-	@OneToMany(mappedBy="Odp",fetch=FetchType.LAZY)
-	private Collection<Produit> produits;
+	public Odp(Long id, int quantite, String description, String date) {
+		super();
+		this.id = id;
+		this.quantite = quantite;
+		this.description = description;
+		this.date = date;
+	}
+
+	
 	
 	
 
 	public Odp() {
-
-	}
-
-
-
-	public Odp(Long id, String date) {
 		super();
-		this.id = id;
-		this.date = date;
 	}
+
 
 
 
@@ -52,9 +67,39 @@ public class Odp implements Serializable {
 
 
 
+
 	public void setId(Long id) {
 		this.id = id;
 	}
+
+
+
+
+	public int getQuantite() {
+		return quantite;
+	}
+
+
+
+
+	public void setQuantite(int quantite) {
+		this.quantite = quantite;
+	}
+
+
+
+
+	public String getDescription() {
+		return description;
+	}
+
+
+
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
 
 
 
@@ -64,27 +109,28 @@ public class Odp implements Serializable {
 
 
 
+
 	public void setDate(String date) {
 		this.date = date;
 	}
 
-	@JsonIgnore
-	public Collection<Produit> getProduits() {
-		return produits;
+
+
+
+	public Article getArticle() {
+		return article;
 	}
 
 
 
-	public void setProduits(Collection<Produit> produits) {
-		this.produits = produits;
+
+	public void setArticle(Article article) {
+		this.article = article;
 	}
 
-	
-	
-	
-	
-	
 
-	
+
+
+
 
 }

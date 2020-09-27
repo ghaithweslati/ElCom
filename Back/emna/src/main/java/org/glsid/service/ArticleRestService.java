@@ -5,8 +5,9 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-import org.glsid.beans.Odp;
-import org.glsid.metier.OdpMetier;
+
+import org.glsid.beans.Article;
+import org.glsid.metier.ArticleMetier;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,31 +17,31 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class OdpRestService {
+public class ArticleRestService {
 
 @Autowired
-private OdpMetier odpMetier;
+private ArticleMetier articleMetier;
 
 
 
-@RequestMapping(value="/odp",method=RequestMethod.GET)
-public  List<Odp> getOdps() {
-	return odpMetier.getOdps();
+@RequestMapping(value="/article",method=RequestMethod.GET)
+public  List<Article> getArticles() {
+	return articleMetier.getArticles();
 }
 
 
 
 
 
-@DeleteMapping("/odp/{id}")
-public  boolean supprimerOdp(@PathVariable(value = "id")Long id) 
+@DeleteMapping("/article/{id}")
+public  boolean supprimerArticle(@PathVariable(value = "id")Long id) 
 {
-	 return odpMetier.supprimerOdp(id);
+	 return articleMetier.supprimerArticle(id);
 }
 
-@RequestMapping(value="/odp",method=RequestMethod.POST)
-public Odp ajouterOdp(@RequestBody Odp odp) {
-	return odpMetier.ajouterOdp(odp);
+@RequestMapping(value="/article",method=RequestMethod.POST)
+public Article ajouterArticle(@RequestBody Article article) {
+	return articleMetier.ajouterArticle(article);
 }
 
 
