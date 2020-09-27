@@ -9,6 +9,9 @@ import { FormsModule } from '@angular/forms';
 import { OdpComponent } from './odp/odp.component';
 import { UtilisateurComponent } from './utilisateur/utilisateur.component';
 import { LoginComponent } from './login/login.component';
+import { ArticleComponent } from './article/article.component';
+
+import {AutocompleteLibModule} from 'angular-ng-autocomplete';
 
 @NgModule({
   declarations: [
@@ -16,13 +19,15 @@ import { LoginComponent } from './login/login.component';
     ProduitComponent,
     OdpComponent,
     UtilisateurComponent,
-    LoginComponent
+    LoginComponent,
+    ArticleComponent
   ],
   imports: [
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    AutocompleteLibModule
   ],
   providers: [],
   bootstrap: [AppComponent]

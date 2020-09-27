@@ -1,11 +1,61 @@
 
+<div class="modal fade" id="modal-default">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">{{action}} ODP</h4>
+      </div>
+      <div class="modal-body">
+        <label *ngIf="action=='Ajouter'">N° ODP</label>
+        <input  *ngIf="action=='Ajouter'"type="text" class="form-control" required [(ngModel)]="odp.id" name="id">
+        <label>ID Article</label>
+        <div class="ng-autocomplete" class="modal-body"  >
+          <ng-autocomplete 
+            [data]="val"
+            [searchKeyword]="keyword"
+            (selected)='selectEvent($event)'
+            (inputChanged)='onChangeSearch($event)'
+            (inputFocused)='onFocused($event)'
+            [itemTemplate]="itemTemplate"
+            [notFoundTemplate]="notFoundTemplate">                                 
+          </ng-autocomplete>
+           
+          <ng-template #itemTemplate let-item>
+          <a [innerHTML]="item.name"></a>
+          </ng-template>
+           
+          <ng-template #notFoundTemplate let-notFound>
+          <div [innerHTML]="notFound"></div>
+          </ng-template>
+          </div>
+
+          
+        <label>Quantité</label>
+        <input type="text" class="form-control" required [(ngModel)]="odp.quantite" name="quantite">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default pull-left" data-dismiss="modal"(click)="fermer()">Fermer</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="ajouterOdp()">{{action}}</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+
+
+<input type="file" (change)="onFileChanged($event)" multiple="false"/>
+<input type="button" (click)="charger()" value="Charger"/>
+ <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-default">Ajouter un ODP</button>
     <section class="content">
       <div class="row">
         <!-- /.col -->
         <div class="col-md-12">
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Les ODP <button (click)="ajouterOdp()" class="btn btn-success btn-lg float-right" type="submit">Nouveau ODP</button></h3>
+              <h3 class="box-title">Les ODP </h3>
               <!-- /.box-tools -->
             </div>
             <!-- /.box-header -->
@@ -14,13 +64,27 @@
               <div class="table-responsive mailbox-messages">
                 <table class="table table-hover table-striped">
                   <tbody>
-                  <tr  *ngFor="let o of odps | async "(click)="redirect(o.id)">
+                    <tr>
+                      <th>N° ODP</th>
+                      <th>Date</th>
+                      <th>Code article</th>
+                      <th>Description</th>
+                      <th>Quantite</th>
+                      <th>Action</th>
+                    </tr>
+                  <tr  *ngFor="let o of odps | async ">
                     <td>{{o.id}}</td>
-                    <td class="mailbox-done"><a href="#"><i class="fas fa-clipboard-check text-yellow"></i></a></td>
-                    <td class="mailbox-date">{{o.date}}</td>
-                    <td class="mailbox-attachment"><i (click)="supprimerOdp(o.id)"  class="fas fa-trash"></i></td>
-                  </tr>
-                  
+                    <td>{{o.date}}</td>
+                    <td>{{o.article.code}}</td>
+                    <td>{{o.description}}</td>
+                    <td>{{o.quantite}}</td>
+                    <td >
+                      <li class="list-inline-item">
+                        <button (click)="initOdp(o)" class="btn btn-success btn-sm rounded-0" type="button" data-toggle="modal" data-target="#modal-default" data-placement="top" title="Edit"><i class="fa fa-edit"></i></button>
+                    </li>
+                    <li class="list-inline-item">
+                        <button (click)="supprimerOdp(o.id)" class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>
+                    </td>
                   </tbody>
                 </table>
                 <!-- /.table -->

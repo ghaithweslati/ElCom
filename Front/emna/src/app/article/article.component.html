@@ -1,0 +1,36 @@
+<input type="file" (change)="onFileChanged($event)" multiple="false"/>
+<input type="button" (click)="charger()" value="Charger"/>
+
+
+<div class="box">
+  <!-- /.box-header -->
+  <div class="box-body">
+    <table id="example1" class="table table-bordered table-striped">
+      <thead>
+      <tr>
+        <th>Code</th>
+        <th>Projet</th>
+        <th>Type</th>
+        <th>Nb File</th>
+        <th>Ultra</th>
+        <th>Simple</th>
+        <th>Tube</th>
+        <th>Actions</th>
+      </tr> 
+      </thead>
+      <tbody>
+      <tr *ngFor="let article of articles | async " >
+        <td>{{article.code}}</td>
+        <td>{{article.projet}}</td>
+        <td>{{article.type}}</td>
+        <td> {{article.nbFile}}</td>
+        <td> {{article.ultra}}</td>
+        <td> {{article.simple}}</td>
+        <td> {{article.tube}}</td>
+      </tr>
+      </tbody>
+
+    </table>
+  </div>
+  <!-- /.box-body -->
+</div>
