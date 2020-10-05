@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
           }
           if(i>=data.length)
           {
-            alert("non");
+            alert("Mot de passe ou matricule incorrecte");
           }
           else
           {

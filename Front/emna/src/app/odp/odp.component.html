@@ -1,103 +1,49 @@
 
-<div class="modal fade" id="modal-default">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">{{action}} ODP</h4>
-      </div>
-      <div class="modal-body">
-        <label *ngIf="action=='Ajouter'">N° ODP</label>
-        <input  *ngIf="action=='Ajouter'"type="text" class="form-control" required [(ngModel)]="odp.id" name="id">
-        <label>ID Article</label>
-        <div class="ng-autocomplete" class="modal-body"  >
-          <ng-autocomplete 
-            [data]="val"
-            [searchKeyword]="keyword"
-            (selected)='selectEvent($event)'
-            (inputChanged)='onChangeSearch($event)'
-            (inputFocused)='onFocused($event)'
-            [itemTemplate]="itemTemplate"
-            [notFoundTemplate]="notFoundTemplate">                                 
-          </ng-autocomplete>
-           
-          <ng-template #itemTemplate let-item>
-          <a [innerHTML]="item.name"></a>
-          </ng-template>
-           
-          <ng-template #notFoundTemplate let-notFound>
-          <div [innerHTML]="notFound"></div>
-          </ng-template>
-          </div>
-
-          
-        <label>Quantité</label>
-        <input type="text" class="form-control" required [(ngModel)]="odp.quantite" name="quantite">
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default pull-left" data-dismiss="modal"(click)="fermer()">Fermer</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="ajouterOdp()">{{action}}</button>
-      </div>
+  <!-- general form elements -->
+  <div class="card card-primary">
+    <div class="card-header">
+      <h3 class="card-title">Ajouter un ODP</h3>
     </div>
-    <!-- /.modal-content -->
-  </div>
-  <!-- /.modal-dialog -->
-</div>
-
-
-<input type="file" (change)="onFileChanged($event)" multiple="false"/>
-<input type="button" (click)="charger()" value="Charger"/>
- <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-default">Ajouter un ODP</button>
-    <section class="content">
-      <div class="row">
-        <!-- /.col -->
-        <div class="col-md-12">
-          <div class="box box-primary">
-            <div class="box-header with-border">
-              <h3 class="box-title">Les ODP </h3>
-              <!-- /.box-tools -->
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body no-padding">
-    
-              <div class="table-responsive mailbox-messages">
-                <table class="table table-hover table-striped">
-                  <tbody>
-                    <tr>
-                      <th>N° ODP</th>
-                      <th>Date</th>
-                      <th>Code article</th>
-                      <th>Description</th>
-                      <th>Quantite</th>
-                      <th>Action</th>
-                    </tr>
-                  <tr  *ngFor="let o of odps | async ">
-                    <td>{{o.id}}</td>
-                    <td>{{o.date}}</td>
-                    <td>{{o.article.code}}</td>
-                    <td>{{o.description}}</td>
-                    <td>{{o.quantite}}</td>
-                    <td >
-                      <li class="list-inline-item">
-                        <button (click)="initOdp(o)" class="btn btn-success btn-sm rounded-0" type="button" data-toggle="modal" data-target="#modal-default" data-placement="top" title="Edit"><i class="fa fa-edit"></i></button>
-                    </li>
-                    <li class="list-inline-item">
-                        <button (click)="supprimerOdp(o.id)" class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>
-                    </td>
-                  </tbody>
-                </table>
-                <!-- /.table -->
-              </div>
-              <!-- /.mail-box-messages -->
-            </div>
-            <!-- /.box-body -->
-            
-          </div>
-          <!-- /. box -->
+    <!-- /.card-header -->
+    <!-- form start -->
+    <form role="form">
+      <div class="card-body">
+        <div class="form-group">
+          <label for="exampleInputEmail1">N° ODP</label>
+          <input type="text" class="form-control" id="exampleInputEmail1"  [(ngModel)]="odp.id" name="id">
         </div>
-        <!-- /.col -->
+        <div class="form-group">
+          <label for="exampleInputPassword1">Article</label>
+          <div class="ng-autocomplete" class="form-control" >
+            <ng-autocomplete 
+              [data]="val"
+              [searchKeyword]="keyword"
+              (selected)='selectEvent($event)'
+              (inputChanged)='onChangeSearch($event)'
+              (inputFocused)='onFocused($event)'
+              [itemTemplate]="itemTemplate"
+              [notFoundTemplate]="notFoundTemplate">                                 
+            </ng-autocomplete>
+             
+            <ng-template #itemTemplate let-item>
+            <a [innerHTML]="item.name"></a>
+            </ng-template>
+             
+            <ng-template #notFoundTemplate let-notFound>
+            <div [innerHTML]="notFound"></div>
+            </ng-template>
+            </div>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Quantité</label>
+          <input type="text" class="form-control" id="exampleInputPassword1"  [(ngModel)]="odp.quantite" name="quantite">
+        </div>
+
       </div>
-      <!-- /.row -->
-    </section>
-    <!-- /.content -->
+      <!-- /.card-body -->
+
+      <div class="card-footer">
+        <button type="submit" class="btn btn-primary" (click)="ajouterOdp()">Ajouter</button>
+      </div>
+    </form>
+

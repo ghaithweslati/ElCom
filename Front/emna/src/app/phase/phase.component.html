@@ -1,0 +1,27 @@
+
+  <!-- general form elements -->
+  <div class="card card-primary">
+    <div class="card-header">
+      <h3 class="card-title">Ajouter une phase</h3>
+    </div>
+    <!-- /.card-header -->
+    <!-- form start -->
+    <form role="form">
+      <div class="card-body">
+        <div class="form-group">
+          <label for="exampleInputEmail1">ID</label>
+          <input type="text" class="form-control" id="exampleInputEmail1"  [(ngModel)]="phase.id" name="id">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Description</label>
+          <input type="text" class="form-control" id="exampleInputPassword1"  [(ngModel)]="phase.description" name="description">
+        </div>
+
+      </div>
+      <!-- /.card-body -->
+
+      <div class="card-footer">
+        <button type="submit" class="btn btn-primary" (click)="ajouterPhase()">Ajouter</button>
+      </div>
+    </form>
+

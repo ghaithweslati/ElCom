@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as XLSX from 'xlsx';
 import { Article } from '../article';
+import { Phase } from '../phase';
 import { Observable } from "rxjs";
 import { DaoService } from "../dao.service";
 import { ActivatedRoute } from '@angular/router';
@@ -15,24 +16,28 @@ export class ArticleComponent implements OnInit {
 
   data:[][];
   article: Article = new Article();
-  articles: Observable<Article[]>;
+  articles:Observable<Article[]>;
+  phases: Observable<Phase[]>;
   constructor(private daoService: DaoService,public myapp: AppComponent,
     private router: ActivatedRoute) {
+      myapp.titre="Article"
 
      }
 
   ngOnInit(): void {
-    this.daoService.baseUrl+="article";
+    this.daoService.baseUrl="http://localhost:8761/phase";
     this.reloadData();
+    this.daoService.baseUrl="http://localhost:8761/article";
+    
   }
 
   reloadData() {
-    this.articles = this.daoService.getListeObjets();
+    this.phases = this.daoService.getListeObjets();
   }
 
   onFileChanged(evt:any)
   {
-    
+
     const target : DataTransfer = <DataTransfer>(evt.target);
     if(target.files.length!==1) 
       alert("On ne peut pas charger plusieurs fichier à la fois");
@@ -51,14 +56,12 @@ export class ArticleComponent implements OnInit {
       reader.readAsBinaryString(target.files[0]);
   }
 
-  ajouterProduit() {
+  ajouterArticle() {
 
- /*   if(this.action=="Ajouter un produit")
-    {
-      this.produit.odp.id=Number(this.id_odp);*/
       this.daoService.ajouterObjet(this.article)
         .subscribe(data => {
         //  this.reloadData();
+        alert("Ajout d'article réussi")
           this.article = new Article();
         }, error => console.log(JSON.stringify(error)));
 
@@ -74,26 +77,16 @@ export class ArticleComponent implements OnInit {
     }
   }*/
 
-  charger()
-  {
-    for(let i=1;i<this.data.length;i++)
-    {
-      
-        if(this.data[i].length==0)
-        break;
-
-        this.article.code=this.data[i].shift();
-        this.article.projet=this.data[i].shift();
-        this.article.type=this.data[i].shift();
-        this.article.nbFile=this.data[i].shift();
-        this.article.ultra=this.data[i].shift();
-        this.article.simple=this.data[i].shift();
-        this.article.tube=this.data[i].shift();
+  
 
 
-        this.ajouterProduit();
+  onCheckboxChange(e,phase:Phase) {
+  
+  
+    if (e.target.checked) {
+      this.article.phases.push(phase);
+    } else {
+      this.article.phases=this.article.phases.filter(function(el) { return el.id != phase.id; });
     }
-    alert("Chargement réussit");
-
   }
 }

@@ -12,6 +12,9 @@ import { LoginComponent } from './login/login.component';
 import { ArticleComponent } from './article/article.component';
 
 import {AutocompleteLibModule} from 'angular-ng-autocomplete';
+import { PhaseComponent } from './phase/phase.component';
+import { ActiviteComponent } from './activite/activite.component';
+import { OdpsComponent } from './odps/odps.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,10 @@ import {AutocompleteLibModule} from 'angular-ng-autocomplete';
     OdpComponent,
     UtilisateurComponent,
     LoginComponent,
-    ArticleComponent
+    ArticleComponent,
+    PhaseComponent,
+    ActiviteComponent,
+    OdpsComponent
   ],
   imports: [
     HttpClientModule,

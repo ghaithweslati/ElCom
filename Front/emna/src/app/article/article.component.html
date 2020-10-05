@@ -1,36 +1,34 @@
-<input type="file" (change)="onFileChanged($event)" multiple="false"/>
-<input type="button" (click)="charger()" value="Charger"/>
 
+  <!-- general form elements -->
+  <div class="card card-primary">
+    <div class="card-header">
+      <h3 class="card-title">Ajouter un article</h3>
+    </div>
+    <!-- /.card-header -->
+    <!-- form start -->
+    <form role="form">
+      <div class="card-body">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Code article</label>
+          <input type="text" class="form-control" id="exampleInputEmail1"  [(ngModel)]="article.code" name="code">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Projet</label>
+          <input type="text" class="form-control" id="exampleInputPassword1" [(ngModel)]="article.projet" name="projet">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Type</label>
+          <input type="text" class="form-control" id="exampleInputPassword1" [(ngModel)]="article.type" name="type">
+        </div>
+        <div class="form-check" *ngFor="let phase of phases | async "> 
+          <input type="checkbox" (change)="onCheckboxChange($event,phase)"  class="form-check-input" id="exampleCheck2">
+          <label class="form-check-label" for="exampleCheck2">{{phase.description}}</label>
+        </div>
+      </div>
+      <!-- /.card-body -->
 
-<div class="box">
-  <!-- /.box-header -->
-  <div class="box-body">
-    <table id="example1" class="table table-bordered table-striped">
-      <thead>
-      <tr>
-        <th>Code</th>
-        <th>Projet</th>
-        <th>Type</th>
-        <th>Nb File</th>
-        <th>Ultra</th>
-        <th>Simple</th>
-        <th>Tube</th>
-        <th>Actions</th>
-      </tr> 
-      </thead>
-      <tbody>
-      <tr *ngFor="let article of articles | async " >
-        <td>{{article.code}}</td>
-        <td>{{article.projet}}</td>
-        <td>{{article.type}}</td>
-        <td> {{article.nbFile}}</td>
-        <td> {{article.ultra}}</td>
-        <td> {{article.simple}}</td>
-        <td> {{article.tube}}</td>
-      </tr>
-      </tbody>
+      <div class="card-footer">
+        <button type="submit" class="btn btn-primary" (click)="ajouterArticle()">Valider</button>
+      </div>
+    </form>
 
-    </table>
-  </div>
-  <!-- /.box-body -->
-</div>

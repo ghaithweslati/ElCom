@@ -7,30 +7,31 @@ import { AppComponent } from '../app.component';
 import * as XLSX from 'xlsx';
 
 @Component({
-  selector: 'app-odp',
-  templateUrl: './odp.component.html',
-  styleUrls: ['./odp.component.sass']
+  selector: 'app-odps',
+  templateUrl: './odps.component.html',
+  styleUrls: ['./odps.component.sass']
 })
-export class OdpComponent implements OnInit {
+export class OdpsComponent implements OnInit {
+
   keyword = 'name';
   val = [];
-  
+  etat="Choisir un fichier";
   odps: Observable<Odp[]>;
   odp: Odp = new Odp();
   data:[][];
   action="Ajouter";
   constructor(private daoService: DaoService,public myapp: AppComponent,
-    private router: Router) { 
-      myapp.titre="Nouveau ODP";
-    }
+    private router: Router) {
+      myapp.titre="Liste ODP";
+     }
 
   ngOnInit(): void {
     this.daoService.baseUrl="http://localhost:8761/article";
     this.daoService.getListeObjets().subscribe(data=>{
      for(let i=0;i<data.length;i++)
       this.val.push({"id":data[i].code,"name":data[i].code});
-
     })
+
 
 
     this.daoService.baseUrl="http://localhost:8761/odp";
@@ -47,7 +48,6 @@ export class OdpComponent implements OnInit {
   {
     for(let i=1;i<this.data.length;i++)
     {
-      
       
         this.data[i].shift();this.data[i].shift();this.data[i].shift();this.data[i].shift();
         this.odp.id=this.data[i].shift();
@@ -67,6 +67,7 @@ export class OdpComponent implements OnInit {
 
 
   ajouterOdp() {
+    this.etat="Choisir un fichier";
       this.daoService.ajouterObjet(this.odp)
         .subscribe(data => {
           this.reloadData();
@@ -112,6 +113,7 @@ export class OdpComponent implements OnInit {
     const target : DataTransfer = <DataTransfer>(evt.target);
     if(target.files.length!==1) 
       alert("On ne peut pas charger plusieurs fichier à la fois");
+      this.etat="Fichier séléctionné"
       const reader:FileReader = new FileReader();
       reader.onload = (e:any ) =>
       {
@@ -151,4 +153,3 @@ export class OdpComponent implements OnInit {
 
   
 }
-
