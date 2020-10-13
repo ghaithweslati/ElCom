@@ -1,0 +1,31 @@
+
+      <!-- /.modal-dialog -->
+        
+    <div class="box-body">
+      <table id="example1" class="table table-bordered table-striped">
+        <thead>
+        <tr>
+          <th>Date</th>
+          <th>ODP</th>
+          <th>Code</th>
+          <th>Type</th>
+          <th>Qte</th>
+          <th>Fil</th>
+          <th *ngFor="let phase of phases | async ">{{phase.id}}</th>
+        </tr>
+        <tr  *ngFor="let odp of odps | async " >
+            <td>{{odp.date}}</td>
+            <td>{{odp.id}}</td>
+            <td>{{odp.article.code}}</td>
+            <td>{{odp.article.type}}</td>
+            <td>{{odp.quantite}}</td>
+            <td>{{odp.article.nbFile}}</td>
+            <td class="p-3 mb-2 bg-light text-dark" *ngFor="let phase of phases | async" class="{{verif(phase.id,odp.article)}}"></td>
+        </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+  
+      </table>
+    </div>

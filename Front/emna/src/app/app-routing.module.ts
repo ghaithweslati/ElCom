@@ -8,9 +8,12 @@ import { LoginComponent } from './login/login.component';
 import { ArticleComponent } from './article/article.component';
 import { PhaseComponent } from './phase/phase.component';
 import { ActiviteComponent } from './activite/activite.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+
 
 
 const routes: Routes = [
+  { path: '', component: DashboardComponent},
   { path: 'produit/:id', component: ProduitComponent},
   { path: 'utilisateur', component: UtilisateurComponent},
   { path: 'login', component: LoginComponent},

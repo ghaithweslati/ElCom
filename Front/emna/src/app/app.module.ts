@@ -15,6 +15,7 @@ import {AutocompleteLibModule} from 'angular-ng-autocomplete';
 import { PhaseComponent } from './phase/phase.component';
 import { ActiviteComponent } from './activite/activite.component';
 import { OdpsComponent } from './odps/odps.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { OdpsComponent } from './odps/odps.component';
     ArticleComponent,
     PhaseComponent,
     ActiviteComponent,
-    OdpsComponent
+    OdpsComponent,
+    DashboardComponent
   ],
   imports: [
     HttpClientModule,

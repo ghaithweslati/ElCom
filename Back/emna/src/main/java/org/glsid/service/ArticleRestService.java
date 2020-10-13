@@ -34,7 +34,7 @@ public  List<Article> getArticles() {
 
 
 @DeleteMapping("/article/{id}")
-public  boolean supprimerArticle(@PathVariable(value = "id")Long id) 
+public  boolean supprimerArticle(@PathVariable(value = "id")String id) 
 {
 	 return articleMetier.supprimerArticle(id);
 }

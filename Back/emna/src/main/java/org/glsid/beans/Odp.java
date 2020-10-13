@@ -18,7 +18,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @SuppressWarnings("unused")
-@Entity
+@Entity(name="odp")
 public class Odp implements Serializable {
 	
 	@Id
@@ -36,8 +36,9 @@ public class Odp implements Serializable {
 	@Column
 	private String date;
 	
-
-	@Column
+	
+	@ManyToOne
+	@JoinColumn(name="id_article")
 	private Article article;
 	
 
