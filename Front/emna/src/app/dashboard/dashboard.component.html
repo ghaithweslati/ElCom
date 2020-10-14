@@ -1,5 +1,33 @@
-
-      <!-- /.modal-dialog -->
+<div id="modal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form>
+        <div class="modal-header">						
+          <h4 class="modal-title">Modifier état</h4>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Type</label><br/>
+            <input type="radio" name="options" [(ngModel)]="odp.etat" value="ATTEN PER">
+            ATTEN PER
+            <br/><input type="radio" name="options" [(ngModel)]="odp.etat" value="PREP MQ">
+            PREP MQ
+            <br/><input type="radio" name="options" [(ngModel)]="odp.etat" value="PREPARER">
+            PREPARER
+            <br/><input type="radio" name="options" [(ngModel)]="odp.etat" value="PROD">
+            PROD
+            <br/><input type="radio" name="options" [(ngModel)]="odp.etat" value="">
+            <br/>
+          </div>		
+        </div>
+        <div class="modal-footer">
+          <input type="button" class="btn btn-default" data-dismiss="modal" value="Annuler" data-dismiss="modal">
+          <input type="submit" class="btn btn-success" value="Modifier"  (click)="modifierEtat()" data-dismiss="modal">
+        </div>
+      </form>
+    </div>
+  </div>
+  </div>
         
     <div class="box-body">
       <table id="example1" class="table table-bordered table-striped">
@@ -12,6 +40,8 @@
           <th>Qte</th>
           <th>Fil</th>
           <th *ngFor="let phase of phases | async ">{{phase.id}}</th>
+          <th>Urgence</th>
+          <th>Etat</th>
         </tr>
         <tr  *ngFor="let odp of odps | async " >
             <td>{{odp.date}}</td>
@@ -20,8 +50,10 @@
             <td>{{odp.article.type}}</td>
             <td>{{odp.quantite}}</td>
             <td>{{odp.article.nbFile}}</td>
-            <td class="p-3 mb-2 bg-light text-dark" *ngFor="let phase of phases | async" class="{{verif(phase.id,odp.article)}}"></td>
-        </tr>
+            <td class="p-3 mb-2 bg-light text-dark" *ngFor="let phase of phases | async" class="{{verif(phase.id,odp.article)}}">{{verif2(phase.id,odp.article)}}</td>
+            <td (click)="modifierUrgence(odp)">{{urgence(odp.urgence)}}</td>
+            <td href="#modal" (click)="initOdp(odp)" data-toggle="modal">{{odp.etat}}</td>
+          </tr>
         </thead>
         <tbody>
 
