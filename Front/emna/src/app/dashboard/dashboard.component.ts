@@ -44,21 +44,13 @@ export class DashboardComponent implements OnInit {
     return "N";
   }
 
-  urgence(urg:boolean)
+  
+  modifierUrgence()
   {
-    if(urg)
-      return "Oui";
-    else
-      return "";
-  }
-
-  modifierUrgence(odp)
-  {
-    odp.urgence=!odp.urgence;
-      this.daoService.ajouterObjet(odp)
+      this.daoService.ajouterObjet(this.odp)
         .subscribe(data => {
+          this.odps=this.daoService.getListeObjets();
         }, error => console.log("Modification du odp échoué"));
-
   }
 
   initOdp(odp:Odp)

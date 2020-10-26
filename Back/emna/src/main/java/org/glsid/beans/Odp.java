@@ -36,6 +36,12 @@ public class Odp implements Serializable {
 	@Column
 	private String date;
 	
+	@Column
+	private String etat;
+	
+	@Column
+	private int urgence=1;
+	
 	
 	@ManyToOne
 	@JoinColumn(name="id_article")
@@ -43,12 +49,13 @@ public class Odp implements Serializable {
 	
 
 
-	public Odp(Long id, int quantite, String description, String date) {
+	public Odp(Long id, int quantite, String description, String date,int urgence) {
 		super();
 		this.id = id;
 		this.quantite = quantite;
 		this.description = description;
 		this.date = date;
+		this.urgence=urgence;
 	}
 
 	
@@ -114,6 +121,39 @@ public class Odp implements Serializable {
 	public void setDate(String date) {
 		this.date = date;
 	}
+
+
+	
+
+
+	public String getEtat() {
+		return etat;
+	}
+
+
+
+
+
+	public void setEtat(String etat) {
+		this.etat = etat;
+	}
+
+
+
+
+
+	public int getUrgence() {
+		return urgence;
+	}
+
+
+
+
+
+	public void setUrgence(int urgence) {
+		this.urgence = urgence;
+	}
+
 
 
 

@@ -26,7 +26,7 @@ export class OdpsComponent implements OnInit {
      }
 
   ngOnInit(): void {
-    this.daoService.baseUrl="http://localhost:8761/article";
+    this.daoService.baseUrl="http://localhost:8762/article";
     this.daoService.getListeObjets().subscribe(data=>{
      for(let i=0;i<data.length;i++)
       this.val.push({"id":data[i].code,"name":data[i].code});
@@ -34,7 +34,7 @@ export class OdpsComponent implements OnInit {
 
 
 
-    this.daoService.baseUrl="http://localhost:8761/odp";
+    this.daoService.baseUrl="http://localhost:8762/odp";
     this.reloadData();
 
   }
@@ -59,12 +59,11 @@ export class OdpsComponent implements OnInit {
         this.data[i].shift();this.data[i].shift();
         this.odp.quantite=this.data[i].shift();
         this.ajouterOdp();
-        
+       
     }
     alert("chargement réussit");
 
   }
-
 
   ajouterOdp() {
     this.etat="Choisir un fichier";
@@ -72,7 +71,7 @@ export class OdpsComponent implements OnInit {
         .subscribe(data => {
           this.reloadData();
           this.fermer();
-        }, error => console.log("Ajout du odp échoué"));
+        }, error => alert(JSON.stringify(error.error.message).split(':')[1]));
   }
 
   

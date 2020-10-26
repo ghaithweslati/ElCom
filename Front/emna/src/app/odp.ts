@@ -5,7 +5,7 @@ export class Odp {
     date:String=new Date().toISOString().slice(0, 10);;
     description:String;
     quantite:number;
-    urgence:boolean;
+    urgence:number;
     etat:String;
     article:Article=new Article();
 }

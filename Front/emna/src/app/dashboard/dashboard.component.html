@@ -28,6 +28,40 @@
     </div>
   </div>
   </div>
+
+
+
+  <div id="modal2" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form>
+        <div class="modal-header">						
+          <h4 class="modal-title">Modifier urgence</h4>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Urgence</label><br/>
+            <input type="radio" name="options2" [(ngModel)]="odp.urgence" value="1">
+            1
+            <br/><input type="radio" name="options2" [(ngModel)]="odp.urgence" value="2">
+            2
+            <br/><input type="radio" name="options2" [(ngModel)]="odp.urgence" value="3">
+            3
+            <br/><input type="radio" name="options2" [(ngModel)]="odp.urgence" value="4">
+            4
+            <br/><input type="radio" name="options2" [(ngModel)]="odp.urgence" value="5">
+            5
+            <br/>
+          </div>		
+        </div>
+        <div class="modal-footer">
+          <input type="button" class="btn btn-default" data-dismiss="modal" value="Annuler" data-dismiss="modal">
+          <input type="submit" class="btn btn-success" value="Modifier"  (click)="modifierUrgence()" data-dismiss="modal">
+        </div>
+      </form>
+    </div>
+  </div>
+  </div>
         
     <div class="box-body">
       <table id="example1" class="table table-bordered table-striped">
@@ -51,7 +85,7 @@
             <td>{{odp.quantite}}</td>
             <td>{{odp.article.nbFile}}</td>
             <td class="p-3 mb-2 bg-light text-dark" *ngFor="let phase of phases | async" class="{{verif(phase.id,odp.article)}}">{{verif2(phase.id,odp.article)}}</td>
-            <td (click)="modifierUrgence(odp)">{{urgence(odp.urgence)}}</td>
+            <td href="#modal2" (click)="initOdp(odp)" data-toggle="modal">{{odp.urgence}}</td>
             <td href="#modal" (click)="initOdp(odp)" data-toggle="modal">{{odp.etat}}</td>
           </tr>
         </thead>
