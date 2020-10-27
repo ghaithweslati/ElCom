@@ -16,6 +16,8 @@ import { PhaseComponent } from './phase/phase.component';
 import { ActiviteComponent } from './activite/activite.component';
 import { OdpsComponent } from './odps/odps.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ArticlesComponent } from './articles/articles.component';
+import { ArticleSupprimerComponent } from './article-supprimer/article-supprimer.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     PhaseComponent,
     ActiviteComponent,
     OdpsComponent,
-    DashboardComponent
+    DashboardComponent,
+    ArticlesComponent,
+    ArticleSupprimerComponent
   ],
   imports: [
     HttpClientModule,

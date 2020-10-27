@@ -25,7 +25,7 @@ getListeObjets(): Observable<any> {
   return this.http.get(`${this.baseUrl}`);
 }
 
-supprimerObjet(id: number): Observable<any> {
+supprimerObjet(id): Observable<any> {
   return this.http.delete(`${this.baseUrl}/${id}`);
 }
 

@@ -9,6 +9,8 @@ import { ArticleComponent } from './article/article.component';
 import { PhaseComponent } from './phase/phase.component';
 import { ActiviteComponent } from './activite/activite.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ArticlesComponent } from './articles/articles.component';
+import { ArticleSupprimerComponent } from './article-supprimer/article-supprimer.component';
 
 
 
@@ -18,6 +20,8 @@ const routes: Routes = [
   { path: 'utilisateur', component: UtilisateurComponent},
   { path: 'login', component: LoginComponent},
   { path: 'article', component: ArticleComponent},
+  { path: 'article/supprimer', component: ArticleSupprimerComponent},
+  { path: 'articles', component: ArticlesComponent},
   { path: 'phase', component: PhaseComponent},
   { path: 'activite', component: ActiviteComponent},
   { path: 'odps', component: OdpsComponent},

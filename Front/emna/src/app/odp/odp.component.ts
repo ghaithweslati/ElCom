@@ -25,7 +25,7 @@ export class OdpComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    this.daoService.baseUrl="http://localhost:8761/article";
+    this.daoService.baseUrl="http://localhost:8762/article";
     this.daoService.getListeObjets().subscribe(data=>{
      for(let i=0;i<data.length;i++)
       this.val.push({"id":data[i].code,"name":data[i].code});
@@ -33,7 +33,7 @@ export class OdpComponent implements OnInit {
     })
 
 
-    this.daoService.baseUrl="http://localhost:8761/odp";
+    this.daoService.baseUrl="http://localhost:8762/odp";
     this.reloadData();
 
   }

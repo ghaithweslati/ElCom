@@ -1,0 +1,45 @@
+
+  <!-- general form elements -->
+  <div class="card card-primary">
+    <div class="card-header">
+      <h3 class="card-title">Supprimer un article</h3>
+    </div>
+    <!-- /.card-header -->
+    <!-- form start -->
+    <form role="form">
+      <div class="card-body">
+        <div class="form-group">
+          <label for="exampleInputFile"></label>
+          <div class="input-group">
+            <div class="custom-file">
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Code Article</label>
+                    <div class="ng-autocomplete"  >
+                      <ng-autocomplete 
+                        [data]="val"
+                        [searchKeyword]="keyword"
+                        (selected)='selectEvent($event)'
+                        (inputChanged)='onChangeSearch($event)'
+                        (inputFocused)='onFocused($event)'
+                        [itemTemplate]="itemTemplate"
+                        [notFoundTemplate]="notFoundTemplate">                                 
+                      </ng-autocomplete>
+                       
+                      <ng-template #itemTemplate let-item>
+                      <a [innerHTML]="item.name"></a>
+                      </ng-template>
+                       
+                      <ng-template #notFoundTemplate let-notFound>
+                      <div [innerHTML]="notFound"></div>
+                      </ng-template>
+                      </div>
+                  </div>
+            </div>
+            <div class="input-group-append">
+              <span class="input-group-text" id=""  value="Supprimer" (click)="supprimerArticle()">Supprimer</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+
