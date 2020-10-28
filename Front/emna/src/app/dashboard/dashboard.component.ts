@@ -17,13 +17,19 @@ export class DashboardComponent implements OnInit {
   phases: Observable<Phase[]>;
   odps: Observable<Odp[]>;
   odp:Odp=new Odp();
+  article:Article = new Article();
   constructor(private daoService: DaoService,public myapp: AppComponent,
     private router: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.daoService.baseUrl="http://localhost:8761/phase";
+    this.reloadData();
+  }
+
+  reloadData()
+  {
+    this.daoService.baseUrl="http://localhost:8762/phase";
     this.phases = this.daoService.getListeObjets();
-    this.daoService.baseUrl="http://localhost:8761/odp";
+    this.daoService.baseUrl="http://localhost:8762/odp";
     this.odps=this.daoService.getListeObjets();  
   }
 
@@ -49,15 +55,37 @@ export class DashboardComponent implements OnInit {
   {
       this.daoService.ajouterObjet(this.odp)
         .subscribe(data => {
-          this.odps=this.daoService.getListeObjets();
+          this.reloadData();
         }, error => console.log("Modification du odp échoué"));
   }
+
+  modifierArticle()
+  {
+    this.daoService.baseUrl="http://localhost:8762/article";
+      this.daoService.ajouterObjet(this.article)
+        .subscribe(data => {
+          this.reloadData();
+        }, error => 
+        {
+          console.log("Modification du odp échoué")
+          this.reloadData();
+        });
+        
+
+  }
+
 
   initOdp(odp:Odp)
   {
     this.odp=Object.assign({}, odp);;
   }
 
+  initArticle(article:Article)
+  {
+    this.article=Object.assign({}, article);;
+  }
+
+  
 
   modifierEtat()
   {
@@ -65,6 +93,30 @@ export class DashboardComponent implements OnInit {
         .subscribe(data => {
           this.odps=this.daoService.getListeObjets();
         }, error => console.log("Modification du odp échoué"));
+  }
+
+  estExistant(odp:Odp)
+  {
+    if(odp.article.nbFile==0&&!odp.article.projet&&!odp.article.type)
+      return "p-3 mb-2 bg-danger text-white";
+    return "p-3 mb-2 bg-white text-dark";
+  }
+
+
+
+  supprimerOdp(id: number) {
+
+    if (confirm("Voulez vous vraiment supprimer ce ODP")) {
+      {
+        this.daoService.supprimerObjet(id)
+        .subscribe(
+          data => {    this.reloadData();;
+
+          },
+          error => alert("Suppression du odp échoué"));
+          this.reloadData();
+      }
+    } 
   }
 
 }

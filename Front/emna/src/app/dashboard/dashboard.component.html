@@ -1,3 +1,55 @@
+<div class="modal fade" id="modal-default">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">{{article.code}}</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Projet</label>
+              <input type="text" class="form-control" id="inputEmail3"  required [(ngModel)]="article.projet" name="projet">
+            </div>
+            <!-- /.form-group -->
+            <div class="form-group">
+              <label>Type</label>
+              <input type="text" class="form-control" id="inputEmail3"  required [(ngModel)]="article.type" name="type">
+            </div>
+            <!-- /.form-group -->
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>NB Files</label>
+              <input type="text" class="form-control" id="inputEmail3"  required [(ngModel)]="article.nbFile" name="nbFile">
+            </div>
+            <!-- /.form-group -->
+
+              
+            </div>
+            <!-- /.form-group -->
+          </div>
+          <!-- /.col -->
+                        <!-- /.col -->        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
+        <button type="button" class="btn btn-primary" (click)="modifierArticle()" data-dismiss="modal">Enregistrer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
 <div id="modal" class="modal fade">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -76,17 +128,22 @@
           <th *ngFor="let phase of phases | async ">{{phase.id}}</th>
           <th>Urgence</th>
           <th>Etat</th>
+          <th>Supprimer</th>
         </tr>
-        <tr  *ngFor="let odp of odps | async " >
+        <tr  *ngFor="let odp of odps | async " class="{{estExistant(odp)}}" >
             <td>{{odp.date}}</td>
             <td>{{odp.id}}</td>
-            <td>{{odp.article.code}}</td>
+            <td href="#modal-default"  data-toggle="modal"  (click)="initArticle(odp.article)" >{{odp.article.code}}</td>
             <td>{{odp.article.type}}</td>
             <td>{{odp.quantite}}</td>
             <td>{{odp.article.nbFile}}</td>
             <td class="p-3 mb-2 bg-light text-dark" *ngFor="let phase of phases | async" class="{{verif(phase.id,odp.article)}}">{{verif2(phase.id,odp.article)}}</td>
             <td href="#modal2" (click)="initOdp(odp)" data-toggle="modal">{{odp.urgence}}</td>
             <td href="#modal" (click)="initOdp(odp)" data-toggle="modal">{{odp.etat}}</td>
+            <td>
+              <li class="list-inline-item">
+                <button (click)="supprimerOdp(odp.id)" class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>  
+            </td>
           </tr>
         </thead>
         <tbody>

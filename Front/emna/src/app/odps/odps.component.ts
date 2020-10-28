@@ -67,6 +67,7 @@ export class OdpsComponent implements OnInit {
 
   ajouterOdp() {
     this.etat="Choisir un fichier";
+    alert(JSON.stringify(this.odp))
       this.daoService.ajouterObjet(this.odp)
         .subscribe(data => {
           this.reloadData();
