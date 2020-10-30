@@ -5,6 +5,7 @@ import { DaoService } from "../dao.service";
 import { AppComponent } from '../app.component';
 import * as XLSX from 'xlsx';
 import { Router } from '@angular/router';
+import { Phase } from '../phase';
 
 @Component({
   selector: 'app-articles',
@@ -16,6 +17,7 @@ export class ArticlesComponent implements OnInit {
 
   etat="Choisir un fichier";
   article: Article = new Article();
+  phase: Phase = new Phase();
   data:[][];
   constructor(private daoService: DaoService,public myapp: AppComponent,
     private router: Router) { 
@@ -36,6 +38,27 @@ export class ArticlesComponent implements OnInit {
         this.article.projet=this.data[i].shift();
         this.article.type=this.data[i].shift();
         this.article.nbFile=this.data[i].shift();
+        const ultra = this.data[i].shift();
+        this.data[i].shift();
+        const tube = this.data[i].shift();
+        this.phase.id='simple';
+        this.article.phases.push(this.phase);
+        this.phase=new Phase();
+        this.phase.id='composant';
+        this.article.phases.push(this.phase);
+        this.phase=new Phase();
+        if(ultra=='U')
+        {
+          this.phase.id='ultra';
+          this.article.phases.push(this.phase);
+          this.phase=new Phase();
+        }
+        if(tube=='T')
+        {
+          this.phase.id='tube';
+          this.article.phases.push(this.phase);
+          this.phase=new Phase();
+        }
         this.ajouterArticle();
        
     }
