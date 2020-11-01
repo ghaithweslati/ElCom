@@ -22,7 +22,7 @@
         </div>
         <div class="form-check" *ngFor="let phase of phases | async "> 
           <input type="checkbox" (change)="onCheckboxChange($event,phase)"  class="form-check-input" id="exampleCheck2">
-          <label class="form-check-label" for="exampleCheck2">{{phase.description}}</label>
+          <label class="form-check-label" for="exampleCheck2">{{phase.id}}</label>
         </div>
       </div>
       <!-- /.card-body -->

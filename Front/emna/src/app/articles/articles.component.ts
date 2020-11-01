@@ -33,7 +33,8 @@ export class ArticlesComponent implements OnInit {
   {
     for(let i=1;i<this.data.length;i++)
     {
-      
+        this.article=new Article();
+        this.article.phases=[];
         this.article.code=this.data[i].shift();
         this.article.projet=this.data[i].shift();
         this.article.type=this.data[i].shift();
@@ -70,7 +71,9 @@ export class ArticlesComponent implements OnInit {
     this.etat="Choisir un fichier";
       this.daoService.ajouterObjet(this.article)
         .subscribe(data => {
-        }, error => console.log(JSON.stringify(error.error.message)));
+        }, error => 
+        {
+        });
   }
 
   

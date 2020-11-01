@@ -25,9 +25,9 @@ export class ArticleComponent implements OnInit {
      }
 
   ngOnInit(): void {
-    this.daoService.baseUrl="http://localhost:8761/phase";
+    this.daoService.baseUrl="http://localhost:8762/phase";
     this.reloadData();
-    this.daoService.baseUrl="http://localhost:8761/article";
+    this.daoService.baseUrl="http://localhost:8762/article";
     
   }
 
@@ -63,7 +63,7 @@ export class ArticleComponent implements OnInit {
         //  this.reloadData();
         alert("Ajout d'article réussi")
           this.article = new Article();
-        }, error => console.log(JSON.stringify(error)));
+        }, error => alert(JSON.stringify(error)));
 
       }
 /*    else
