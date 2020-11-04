@@ -40,7 +40,7 @@ public class Odp implements Serializable {
 	private String etat;
 	
 	@Column
-	private int urgence=1;
+	private int urgence=5;
 	
 	
 	@ManyToOne

@@ -36,7 +36,6 @@ public class Article implements Serializable {
 	
 
 	@Id
-	//@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_article", unique = true, nullable = false)
 	private String code;
 	
