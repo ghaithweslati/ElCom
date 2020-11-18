@@ -2,6 +2,7 @@ package org.glsid.beans;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -29,6 +30,10 @@ public class Phase implements Serializable {
 	
 	@Column
 	private String description;
+	
+	@OneToMany(mappedBy="phase",fetch=FetchType.LAZY)
+	private Collection<ActivitePhase> activitePhases;
+
 	
 
 

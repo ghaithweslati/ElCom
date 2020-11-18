@@ -11,6 +11,9 @@ import { ActiviteComponent } from './activite/activite.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ArticlesComponent } from './articles/articles.component';
 import { ArticleSupprimerComponent } from './article-supprimer/article-supprimer.component';
+import { PresenceComponent } from './presence/presence.component';
+import { CommencerComponent } from './commencer/commencer.component';
+import { TerminerComponent } from './terminer/terminer.component';
 
 
 
@@ -25,7 +28,10 @@ const routes: Routes = [
   { path: 'phase', component: PhaseComponent},
   { path: 'activite', component: ActiviteComponent},
   { path: 'odps', component: OdpsComponent},
-  { path: 'odp', component: OdpComponent} 
+  { path: 'odp', component: OdpComponent},
+  { path: 'commencer', component: CommencerComponent},
+  { path: 'terminer', component: TerminerComponent},
+  { path: 'presence', component: PresenceComponent} 
 ];
 
 @NgModule({

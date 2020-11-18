@@ -35,7 +35,7 @@ public  List<Utilisateur> getUtilisateurs() {
 
 
 @DeleteMapping("/user/{id}")
-public  boolean supprimerUtilisateur(@PathVariable(value = "id")Long id) 
+public  boolean supprimerUtilisateur(@PathVariable(value = "id")String id) 
 {
 	 return userMetier.supprimerUtilisateur(id);
 }

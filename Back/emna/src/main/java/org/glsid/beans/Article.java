@@ -22,6 +22,8 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -32,6 +34,7 @@ import javax.persistence.ManyToOne;
 	    dynamicInsert = true, dynamicUpdate = true
 	)
 @Table(name="article")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Article implements Serializable {
 	
 

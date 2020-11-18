@@ -5,9 +5,10 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.glsid.beans.ActivitePhase;
 import org.glsid.beans.Odp;
-import org.glsid.beans.Phase;
-import org.glsid.metier.PhaseMetier;
+import org.glsid.metier.ActivitePhaseMetier;
+import org.glsid.metier.OdpMetier;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,20 +18,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class PhaseRestService {
+public class ActivitePhaseRestService {
 
 @Autowired
-private PhaseMetier phaseMetier;
+private ActivitePhaseMetier activitePhaseMetier;
 
 
-@RequestMapping(value="/phase",method=RequestMethod.POST)
-public void ajouterPhase(@RequestBody Phase phase) {
-	 phaseMetier.ajouterPhase(phase);
-}
 
-@RequestMapping(value="/phase",method=RequestMethod.GET)
-public  List<Phase> getPhases() {
-	return phaseMetier.getPhases();
+@RequestMapping(value="/activitephase/{id}",method=RequestMethod.GET)
+public  List<ActivitePhase> getOdps(@PathVariable(value = "id")String id) {
+	return activitePhaseMetier.getActiviteByPhase(id);
 }
 
 

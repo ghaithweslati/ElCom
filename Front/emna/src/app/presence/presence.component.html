@@ -1,0 +1,24 @@
+
+  <!-- general form elements -->
+  <div class="card card-primary">
+    <div class="card-header">
+      <h3 class="card-title">Valider la présence</h3>
+    </div>
+    <!-- /.card-header -->
+    <!-- form start -->
+    <form role="form">
+      <div class="card-body">
+        <div class="form-group">
+          <label for="exampleInputFile">Matricue</label>
+          <div class="input-group">
+            <div class="custom-file">
+              <input type="text" class="form-control" [(ngModel)]="presence.utilisateur.matricule" name="nom" >
+            </div>
+            <div class="input-group-append">
+              <span class="input-group-text" id="" (click)="ajouterPresence()">Ajouter</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+

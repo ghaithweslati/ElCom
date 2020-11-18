@@ -1,6 +1,8 @@
 package org.glsid.metier;
 
 import java.util.List;
+
+import org.glsid.beans.Article;
 import org.glsid.beans.Odp;
 import org.glsid.dao.ArticleRepository;
 import org.glsid.dao.OdpRepository;
@@ -33,7 +35,10 @@ public class OdpMetier {
 	
 	public Odp ajouterOdp(Odp odp)
 	{
-		articleRepository.save(odp.getArticle());
+		
+		Article art=articleRepository.findById(odp.getArticle().getCode()).orElse(null);
+		if(art==null)
+			articleRepository.save(odp.getArticle());
 		return odpRepository.save(odp);
 	}
 	

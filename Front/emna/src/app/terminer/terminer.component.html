@@ -1,0 +1,22 @@
+
+  <!-- general form elements -->
+  <div class="card card-primary">
+    <div class="card-header">
+      <h3 class="card-title">Terminer une activite</h3>
+    </div>
+    <!-- /.card-header -->
+    <!-- form start -->
+    <form role="form">
+      <div class="card-body">
+        <div class="form-group">
+            <label for="exampleInputPassword1">Matricule</label>
+            <input type="text" class="form-control" id="exampleInputPassword1"  [(ngModel)]="tache.utilisateur.matricule" name="matircule">
+          </div>
+      </div>
+      <!-- /.card-body -->
+
+      <div class="card-footer">
+        <button type="submit" class="btn btn-primary"(click)="terminerTache()" >Valider</button>
+      </div>
+    </form>
+

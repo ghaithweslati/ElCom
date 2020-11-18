@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import feign.Param;
 
 
-public interface UtilisateurRepository  extends JpaRepository<Utilisateur,Long>{
+public interface UtilisateurRepository  extends JpaRepository<Utilisateur,String>{
 
 
 

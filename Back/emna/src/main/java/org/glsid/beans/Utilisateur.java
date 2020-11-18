@@ -19,12 +19,8 @@ public class Utilisateur implements Serializable {
 	
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column
-	private Long id;
-	
-	@Column
-	private int matricule;
+	@Column(name = "id_utilisateur", unique = true, nullable = false)
+	private String matricule;
 	
 	@Column
 	private String nom;
@@ -44,6 +40,13 @@ public class Utilisateur implements Serializable {
 	@Column
 	private String poste;
 
+	@OneToMany(mappedBy="utilisateur",fetch=FetchType.LAZY)
+	private Collection<Presence> presences;
+
+	
+	@OneToMany(mappedBy="utilisateur",fetch=FetchType.LAZY)
+	private Collection<Tache> taches;
+
 
 	
 
@@ -54,9 +57,8 @@ public class Utilisateur implements Serializable {
 
 
 
-	public Utilisateur(Long id, int matricule, String nom, String prenom,String mdp, int age, String sexe, String poste) {
+	public Utilisateur(String matricule, String nom, String prenom,String mdp, int age, String sexe, String poste) {
 		super();
-		this.id = id;
 		this.matricule = matricule;
 		this.nom = nom;
 		this.prenom = prenom;
@@ -69,28 +71,16 @@ public class Utilisateur implements Serializable {
 
 
 
-	public Long getId() {
-		return id;
-	}
 
 
-
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-
-
-
-	public int getMatricule() {
+	public String getMatricule() {
 		return matricule;
 	}
 
 
 
 
-	public void setMatricule(int matricule) {
+	public void setMatricule(String matricule) {
 		this.matricule = matricule;
 	}
 
@@ -177,6 +167,22 @@ public class Utilisateur implements Serializable {
 	public void setMdp(String mdp) {
 		this.mdp = mdp;
 	}
+
+
+
+	@JsonIgnore
+	public Collection<Presence> getPresences() {
+		return presences;
+	}
+
+
+
+
+	public void setPresences(Collection<Presence> presences) {
+		this.presences = presences;
+	}
+	
+	
 	
 	
 	

@@ -18,6 +18,9 @@ import { OdpsComponent } from './odps/odps.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ArticlesComponent } from './articles/articles.component';
 import { ArticleSupprimerComponent } from './article-supprimer/article-supprimer.component';
+import { PresenceComponent } from './presence/presence.component';
+import { CommencerComponent } from './commencer/commencer.component';
+import { TerminerComponent } from './terminer/terminer.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,10 @@ import { ArticleSupprimerComponent } from './article-supprimer/article-supprimer
     OdpsComponent,
     DashboardComponent,
     ArticlesComponent,
-    ArticleSupprimerComponent
+    ArticleSupprimerComponent,
+    PresenceComponent,
+    CommencerComponent,
+    TerminerComponent
   ],
   imports: [
     HttpClientModule,

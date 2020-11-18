@@ -21,7 +21,7 @@ public class UtilisateurMetier {
 	
 	
 
-	public boolean supprimerUtilisateur(Long id)
+	public boolean supprimerUtilisateur(String id)
 	{
 		Utilisateur user=userRepository.findById(id).orElse(null);
 		userRepository.delete(user);

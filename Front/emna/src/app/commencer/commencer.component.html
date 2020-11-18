@@ -1,0 +1,31 @@
+
+  <!-- general form elements -->
+  <div class="card card-primary">
+    <div class="card-header">
+      <h3 class="card-title">Commencer une activite</h3>
+    </div>
+    <!-- /.card-header -->
+    <!-- form start -->
+    <form role="form">
+      <div class="card-body">
+        <div class="form-group">
+          <label for="exampleInputEmail1">ID Activite</label>
+          <input type="text" class="form-control" id="exampleInputEmail1"  [(ngModel)]="tache.activite.id"  (change)="getActivite()"name="id">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Matricule</label>
+            <input type="text" class="form-control" id="exampleInputPassword1"  [(ngModel)]="tache.utilisateur.matricule" name="matircule">
+          </div>
+        <div class="form-group" *ngIf="afficher">
+          <label for="exampleInputPassword1">ODP</label>
+          <input type="text" class="form-control" id="exampleInputPassword1"  [(ngModel)]="tache.odp.id" name="description">
+        </div>
+
+      </div>
+      <!-- /.card-body -->
+
+      <div class="card-footer">
+        <button type="submit" class="btn btn-primary"(click)="ajouterTache()" >Valider</button>
+      </div>
+    </form>
+

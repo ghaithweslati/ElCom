@@ -47,6 +47,9 @@ public class Odp implements Serializable {
 	@JoinColumn(name="id_article")
 	private Article article;
 	
+	@OneToMany(mappedBy="odp",fetch=FetchType.LAZY)
+	private Collection<Tache> taches;
+	
 
 
 	public Odp(Long id, int quantite, String description, String date,int urgence) {
