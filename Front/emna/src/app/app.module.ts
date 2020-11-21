@@ -21,6 +21,7 @@ import { ArticleSupprimerComponent } from './article-supprimer/article-supprimer
 import { PresenceComponent } from './presence/presence.component';
 import { CommencerComponent } from './commencer/commencer.component';
 import { TerminerComponent } from './terminer/terminer.component';
+import { OperatriceComponent } from './operatrice/operatrice.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { TerminerComponent } from './terminer/terminer.component';
     ArticleSupprimerComponent,
     PresenceComponent,
     CommencerComponent,
-    TerminerComponent
+    TerminerComponent,
+    OperatriceComponent
   ],
   imports: [
     HttpClientModule,

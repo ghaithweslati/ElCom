@@ -35,7 +35,7 @@ public class OdpMetier {
 	
 	public Odp ajouterOdp(Odp odp)
 	{
-		
+
 		Article art=articleRepository.findById(odp.getArticle().getCode()).orElse(null);
 		if(art==null)
 			articleRepository.save(odp.getArticle());

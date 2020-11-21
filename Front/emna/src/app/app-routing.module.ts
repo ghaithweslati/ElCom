@@ -14,6 +14,7 @@ import { ArticleSupprimerComponent } from './article-supprimer/article-supprimer
 import { PresenceComponent } from './presence/presence.component';
 import { CommencerComponent } from './commencer/commencer.component';
 import { TerminerComponent } from './terminer/terminer.component';
+import { OperatriceComponent } from './operatrice/operatrice.component';
 
 
 
@@ -29,6 +30,7 @@ const routes: Routes = [
   { path: 'activite', component: ActiviteComponent},
   { path: 'odps', component: OdpsComponent},
   { path: 'odp', component: OdpComponent},
+  { path: 'operatrice', component: OperatriceComponent},
   { path: 'commencer', component: CommencerComponent},
   { path: 'terminer', component: TerminerComponent},
   { path: 'presence', component: PresenceComponent} 

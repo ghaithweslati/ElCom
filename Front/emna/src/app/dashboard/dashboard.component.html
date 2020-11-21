@@ -50,36 +50,6 @@
 
 
 
-<div id="modal" class="modal fade">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <form>
-        <div class="modal-header">						
-          <h4 class="modal-title">Modifier état</h4>
-        </div>
-        <div class="modal-body">
-          <div class="form-group">
-            <label>Type</label><br/>
-            <input type="radio" name="options" [(ngModel)]="odp.etat" value="ATTEN PER">
-            ATTEN PER
-            <br/><input type="radio" name="options" [(ngModel)]="odp.etat" value="PREP MQ">
-            PREP MQ
-            <br/><input type="radio" name="options" [(ngModel)]="odp.etat" value="PREPARER">
-            PREPARER
-            <br/><input type="radio" name="options" [(ngModel)]="odp.etat" value="PROD">
-            PROD
-            <br/><input type="radio" name="options" [(ngModel)]="odp.etat" value="">
-            <br/>
-          </div>		
-        </div>
-        <div class="modal-footer">
-          <input type="button" class="btn btn-default" data-dismiss="modal" value="Annuler" data-dismiss="modal">
-          <input type="submit" class="btn btn-success" value="Modifier"  (click)="modifierEtat()" data-dismiss="modal">
-        </div>
-      </form>
-    </div>
-  </div>
-  </div>
 
 
 
@@ -119,6 +89,10 @@
       <table id="example1" class="table table-bordered table-striped">
         <thead>
         <tr>
+          <th>  
+            <li class="list-inline-item">
+              <button  *ngIf="visible" (click)="supprimerOdps()" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>  
+          </th>
           <th>Date</th>
           <th>ODP</th>
           <th>Code</th>
@@ -131,6 +105,9 @@
           <th>Supprimer</th>
         </tr>
         <tr  *ngFor="let odp of odps | async " class="{{estExistant(odp)}}" >
+            <td>
+              <input  type="checkbox"   (change)="onCheckboxChange($event,odp.id)" >
+            </td>
             <td>{{odp.date}}</td>
             <td>{{odp.id}}</td>
             <td href="#modal-default"  data-toggle="modal"  (click)="initArticle(odp.article)" >{{odp.article.code}}</td>
@@ -139,7 +116,7 @@
             <td>{{odp.article.nbFile}}</td>
             <td class="p-3 mb-2 bg-light text-dark" *ngFor="let phase of phases | async" class="{{verif(phase.id,odp.article)}}">{{verif2(phase.id,odp.article)}}</td>
             <td href="#modal2" (click)="initOdp(odp)" data-toggle="modal">{{odp.urgence}}</td>
-            <td href="#modal" (click)="initOdp(odp)" data-toggle="modal">{{odp.etat}}</td>
+            <td>{{getEtat(odp.taches)}}</td>
             <td>
               <li class="list-inline-item">
                 <button (click)="supprimerOdp(odp.id)" class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>  

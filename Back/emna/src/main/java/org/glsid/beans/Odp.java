@@ -175,6 +175,22 @@ public class Odp implements Serializable {
 
 
 
+	public Collection<Tache> getTaches() {
+		return taches;
+	}
+
+
+
+
+
+	public void setTaches(Collection<Tache> taches) {
+		this.taches = taches;
+	}
+
+
+	
+
+
 
 
 }

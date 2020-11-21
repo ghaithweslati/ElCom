@@ -11,6 +11,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "tache")
 public class Tache{
@@ -96,11 +98,6 @@ public class Tache{
 
 
 
-
-
-	public Odp getOdp() {
-		return odp;
-	}
 
 
 	public void setOdp(Odp odp) {

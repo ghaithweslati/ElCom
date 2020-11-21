@@ -18,6 +18,8 @@ export class DashboardComponent implements OnInit {
   odps: Observable<Odp[]>;
   odp:Odp=new Odp();
   article:Article = new Article();
+  ids=[];
+  visible=false;
   constructor(private daoService: DaoService,public myapp: AppComponent,
     private router: ActivatedRoute) { }
 
@@ -113,10 +115,53 @@ export class DashboardComponent implements OnInit {
           data => {    this.reloadData();;
 
           },
-          error => alert("Suppression du odp échoué"));
+          error => console.log("Suppression du odp échoué"));
           this.reloadData();
       }
     } 
   }
+  
 
+
+
+  
+  supprimerOdps() {
+
+    if (confirm("Voulez vous vraiment supprimer ces ODPs")) {
+      {
+        for(let i=0;i<this.ids.length;i++)
+        {
+        this.daoService.supprimerObjet(this.ids[i])
+        .subscribe(
+          data => {    this.reloadData();;
+
+          },
+          error => console.log("Suppression du odp échoué"));
+          this.reloadData();
+        }
+      }
+    } 
+  }
+
+  onCheckboxChange(e,id) {
+  
+  
+    if (e.target.checked) {
+      this.ids.push(id);
+    } else {
+      this.ids=this.ids.filter(function(el) { return el != id; });
+    }
+
+    this.visible=this.ids.length>0;
+  }
+
+
+  getEtat(taches)
+  {
+    if(taches.length==0)
+      return "ATTEN PRE";
+    else if(taches[taches.length-1].dateFin==" ")
+      return "PROD";
+    else return "PREPARER"
+  }
 }

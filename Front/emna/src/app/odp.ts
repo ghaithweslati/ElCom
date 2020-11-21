@@ -1,4 +1,5 @@
 import { Article } from './article';
+import { Tache } from './tache';
 
 export class Odp {
     id: number;
@@ -8,4 +9,5 @@ export class Odp {
     urgence:number;
     etat:String;
     article:Article=new Article();
+    taches:Tache[]=[];
 }
