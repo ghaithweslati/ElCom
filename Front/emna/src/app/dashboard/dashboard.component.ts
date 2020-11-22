@@ -48,9 +48,19 @@ export class DashboardComponent implements OnInit {
   {
     for(let i=0;i<article.phases.length;i++)
       if(article.phases[i].id==id)
-        return "";
-    return "N";
+        return true;
+    return false;
   }
+
+  getOperatrice(taches,id)
+  {
+    for(let i=0;i<taches.length;i++)
+      if(taches[i].activite.phase.id==id)
+        return taches[i].utilisateur.nom+" "+taches[i].utilisateur.prenom
+    
+      return 
+  }
+
 
   
   modifierUrgence()
@@ -156,12 +166,30 @@ export class DashboardComponent implements OnInit {
   }
 
 
-  getEtat(taches)
+  getEtat(taches,phases)
   {
+    let nb=0;
     if(taches.length==0)
-      return "ATTEN PRE";
-    else if(taches[taches.length-1].dateFin==" ")
-      return "PROD";
-    else return "PREPARER"
+      return "";
+
+      for(let i=0;i<taches.length;i++)
+        if(taches[i].dateFin!=" ")
+          nb++;
+      if(nb==phases.length)
+        return "PREPARER";
+      else
+        return "ATTEN PRE";
+  }
+
+  verif3(taches,id)
+  {
+    for(let i=0;i<taches.length;i++)
+      if(taches[i].activite.phase.id==id)
+      
+        if(taches[i].dateFin==" ")
+          return {width:"50%",class:"progress-bar bg-info"}
+        else
+        return {width:"100%",class:"progress-bar bg-success"} 
+      return {width:"0%",class:"progress-bar bg-info"}
   }
 }

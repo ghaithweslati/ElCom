@@ -424,15 +424,24 @@ iframe {
   
 }
 
+
     
   </style>
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body
 class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed"
 >
   <app-root></app-root>
 
+
   
 </body>
+
+<script>
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+</script>
 </html>
