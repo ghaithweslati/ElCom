@@ -15,7 +15,7 @@ import { PresenceComponent } from './presence/presence.component';
 import { CommencerComponent } from './commencer/commencer.component';
 import { TerminerComponent } from './terminer/terminer.component';
 import { OperatriceComponent } from './operatrice/operatrice.component';
-
+import { PosteComponent } from './poste/poste.component';
 
 
 const routes: Routes = [
@@ -33,6 +33,7 @@ const routes: Routes = [
   { path: 'operatrice', component: OperatriceComponent},
   { path: 'commencer', component: CommencerComponent},
   { path: 'terminer', component: TerminerComponent},
+  { path: 'poste', component: PosteComponent},
   { path: 'presence', component: PresenceComponent} 
 ];
 

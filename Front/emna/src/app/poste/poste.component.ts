@@ -1,41 +1,43 @@
 import { Component, OnInit } from '@angular/core';
-import { Utilisateur } from '../utilisateur';
 import { Observable } from "rxjs";
 import { DaoService } from "../dao.service";
 import { ActivatedRoute } from '@angular/router';
 import { AppComponent } from '../app.component';
 import { Poste } from '../Poste';
-import { Responsable } from '../responsable';
 @Component({
-  selector: 'app-utilisateur',
-  templateUrl: './utilisateur.component.html',
-  styleUrls: ['./utilisateur.component.sass']
+  selector: 'app-poste',
+  templateUrl: './poste.component.html',
+  styleUrls: ['./poste.component.sass']
 })
-export class UtilisateurComponent implements OnInit {
+export class PosteComponent implements OnInit {
 
-  action="Ajouter un utilisateur";
-  utilisateurs: Observable<Utilisateur[]>;
   postes: Observable<Poste[]>;
-  reponsables: Observable<Utilisateur[]>
-  utilisateur: Utilisateur = new Utilisateur();
-  estOperatrice=false;
+  poste:Poste=new Poste();
   constructor(private daoService: DaoService,public myapp: AppComponent,
     private router: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.daoService.baseUrl="http://localhost:8762/poste";
-    this.postes= this.daoService.getListeObjets();
-    this.daoService.baseUrl="http://localhost:8762/user";
-    this.reponsables=this.daoService.getObjet("resp-mag");
+    this.poste.nom="";
+    this.daoService.baseUrl+="poste";
     this.reloadData();
   }
 
   reloadData() {
-    this.utilisateurs = this.daoService.getListeObjets();
+    this.postes = this.daoService.getListeObjets();
   }
 
-  ajouterUtilisateur() {
+  ajouterPoste() {
 
+    var nom = prompt("Entrer le nom du poste", this.poste.nom+"");
+    if (nom != null) {
+      this.poste.nom=nom;
+      this.daoService.ajouterObjet(this.poste)
+      .subscribe(data => {
+        this.reloadData();
+        this.poste = new Poste();
+      }, error => alert("Ajout d'utilisateur échoué"));
+    }
+/*
     if(this.utilisateur.poste.nom.includes("Operatrice"))
     this.daoService.baseUrl="http://localhost:8762/operatrice";
   else if(this.utilisateur.poste.nom=="Resp-Mag")
@@ -60,40 +62,31 @@ export class UtilisateurComponent implements OnInit {
         this.utilisateur = new Utilisateur();
       }, error => alert("Modification d'utilisateur échoué"));
     }
-    this.daoService.baseUrl="http://localhost:8762/user";
+    this.daoService.baseUrl="http://localhost:8762/user";*/
   }
 
 
-  supprimerUtilisateur(id: number) {
+  supprimerPoste(id: number) {
 
-    if (confirm("Voulez vous vraiment supprimer cet utilisateur")) {
+    if (confirm("Voulez vous vraiment supprimer ce poste")) {
       {
         this.daoService.supprimerObjet(id)
         .subscribe(
           data => {this.reloadData();
           },
-          error => alert("Suppression d'utilisateur échoué"));
+          error => alert("Suppression du poste échoué"));
           this.reloadData();
       }
     } 
-
   }
 
 
-  initUtilisateur(user:Utilisateur)
+  initPoste(poste:Poste)
   {
-    this.utilisateur=Object.assign({}, user);
-    this.action="Modifier l'utilisateur";
+    this.poste=Object.assign({}, poste);
+    this.ajouterPoste();
   }
 
 
-  onChange(deviceValue) {
-    this.estOperatrice=this.utilisateur.poste.nom.includes("Operatrice");
-}
-
-estOperatrice2(nom)
-{
-  return nom.includes('Operatrice');
-}
 
 }

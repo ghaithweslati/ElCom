@@ -22,6 +22,7 @@ import { PresenceComponent } from './presence/presence.component';
 import { CommencerComponent } from './commencer/commencer.component';
 import { TerminerComponent } from './terminer/terminer.component';
 import { OperatriceComponent } from './operatrice/operatrice.component';
+import { PosteComponent } from './poste/poste.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { OperatriceComponent } from './operatrice/operatrice.component';
     PresenceComponent,
     CommencerComponent,
     TerminerComponent,
-    OperatriceComponent
+    OperatriceComponent,
+    PosteComponent
   ],
   imports: [
     HttpClientModule,

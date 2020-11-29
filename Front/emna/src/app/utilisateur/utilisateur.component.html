@@ -29,28 +29,40 @@
                 <div class="modal-body">
                   <div class="row">
                     <div class="col-md-6">
+
+                      <div class="form-group">
+                        <label>Poste</label>
+                        <div class="form-group">
+                          <select (change)="onChange($event.target.value)" class="form-control select2" style="width: 100%;" [(ngModel)]="utilisateur.poste" >
+                            <option value="Plan-Log" *ngFor="let poste of postes | async" [ngValue]="poste" >{{poste.nom}}</option>
+                          </select>
+                        </div>
+                      </div>
+
+
                       <div class="form-group">
                         <label>Matricule</label>
-                        <input type="text" class="form-control" id="inputEmail3"  required [(ngModel)]="utilisateur.matricule" name="matricule">
+                        <input  type="text" class="form-control" id="inputEmail3"  required [(ngModel)]="utilisateur.matricule" name="matricule">
                       </div>
                       <!-- /.form-group -->
-                      <div class="form-group">
-                        <label>Nom</label>
-                        <input type="text" class="form-control" id="inputEmail3"  required [(ngModel)]="utilisateur.nom" name="nom">
-                      </div>
+
                       <!-- /.form-group -->
                     </div>
       
                     <div class="col-md-6">
+
+                      <div class="form-group">
+                        <label>Nom</label>
+                        <input type="text" class="form-control" id="inputEmail3"  required [(ngModel)]="utilisateur.nom" name="nom">
+                      </div>
+
+
                       <div class="form-group">
                         <label>Prenom</label>
                         <input type="text" class="form-control" id="inputEmail3"  required [(ngModel)]="utilisateur.prenom" name="prenom">
                       </div>
                       <!-- /.form-group -->
-                      <div class="form-group">
-                        <label>Mot de passe</label>
-                        <input type="password" class="form-control" id="inputEmail3"  required [(ngModel)]="utilisateur.mdp" name="mdp">
-                      </div>
+
                       <!-- /.form-group -->
                     </div>
       
@@ -80,26 +92,28 @@
                       </div>
                       <!-- /.form-group -->
                     </div>
+
+
+                    
                     <!-- /.col -->
-                                  <!-- /.col -->
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Poste</label>
-                        <div class="form-group">
-                          <select class="form-control select2" style="width: 100%;"  [(ngModel)]="utilisateur.poste">
-                            <option selected="selected" value="Resp-Mag">Resp-Mag</option>
-                            <option value="Plan-Log">Plan-Log</option>
-                            <option value="Tech-Log">Tech-Log</option>
-                            <option value="Magasinier">Magasinier</option>
-                            <option value="Admin">Admin</option>
-                            <option value="Resp-Prod">Resp-Prod</option>
+                    <div class="col-md-6" >
+                      <div class="form-group" *ngIf="estOperatrice" >
+                        <label>Responsable</label>
+                        <div class="form-group" >
+                          <select  class="form-control select2" style="width: 100%;" [(ngModel)]="utilisateur.responsable.matricule" >
+                            <option value="Plan-Log" *ngFor="let resp of reponsables | async" [ngValue]="resp.matricule" >{{resp.nom}} {{resp.prenom}}</option>
                           </select>
                         </div>
                       </div>
-                      <!-- /.form-group -->
-      
-                      <!-- /.form-group -->
+
+                      <div class="form-group"  *ngIf="!estOperatrice">
+                        <label>Mot de passe</label>
+                        <input type="password" class="form-control" id="inputEmail3"  required [(ngModel)]="utilisateur.mdp" name="mdp">
+                      </div>
                     </div>
+
+
+
                   </div>
       
       
@@ -119,25 +133,26 @@
       <table id="example1" class="table table-bordered table-striped">
         <thead>
         <tr>
-          <th>ID</th>
           <th>Matricule</th>
           <th>Nom</th>
           <th>Prenom</th>
           <th>Age</th>
           <th>Sexe</th>
           <th>Poste</th>
+          <th>Responsable</th>
           <th>Actions</th>
         </tr>
         </thead>
         <tbody>
         <tr *ngFor="let user of utilisateurs | async " >
-          <td>{{user.id}}</td>
           <td>{{user.matricule}}</td>
           <td>{{user.nom}}</td>
           <td> {{user.prenom}}</td>
           <td> {{user.age}}</td>
           <td> {{user.sexe}}</td>
-          <td> {{user.poste}}</td>
+          <td> {{user.poste.nom}}</td>
+          <td *ngIf="estOperatrice2(user.poste.nom)"> {{user.responsable.nom}} {{user.responsable.prenom}}</td>
+          <td *ngIf="!estOperatrice2(user.poste.nom)"></td>
           <td>
             <li class="list-inline-item">
               <button (click)="initUtilisateur(user)"  type="button" class="btn btn-success btn-sm rounded-0" data-toggle="modal" data-target="#modal-default">
@@ -145,7 +160,7 @@
               </button>
             </li>
           <li class="list-inline-item">
-              <button (click)="supprimerUtilisateur(user.id)" class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>
+              <button (click)="supprimerUtilisateur(user.matricule)" class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>
           </td>
         </tr>
         </tbody>

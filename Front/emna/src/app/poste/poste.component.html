@@ -1,0 +1,42 @@
+<div class="row">
+    <div class="col-xs-12">
+      <div class="box box-default">
+        <div class="box-header with-border">
+
+        </div>
+        <div class="box-body">
+          <button type="button" class="btn btn-default" (click)="ajouterPoste()">
+            Ajouter une poste
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+ <div class="box-body">
+        <table id="example1" class="table table-bordered table-striped">
+          <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Actions</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let poste of postes | async " >
+            <td>{{poste.id}}</td>
+            <td>{{poste.nom}}</td>
+            <td>
+              <li class="list-inline-item">
+                <button (click)="initPoste(poste)"  type="button" class="btn btn-success btn-sm rounded-0">
+                  <i class="fa fa-edit"></i>
+                </button>
+              </li>
+            <li class="list-inline-item">
+                <button (click)="supprimerPoste(poste.id)" class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>
+            </td>
+          </tr>
+          </tbody>
+    
+        </table>
+      </div>
