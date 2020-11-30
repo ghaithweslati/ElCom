@@ -13,6 +13,10 @@ import javax.persistence.OneToMany;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Utilisateur implements Serializable {
@@ -37,15 +41,18 @@ public class Utilisateur implements Serializable {
 	@Column
 	private String sexe;
 	
-	@Column
-	private String poste;
-
+	@ManyToOne
+	@JoinColumn(name="id_poste")
+	private Poste poste;
+	
 	@OneToMany(mappedBy="utilisateur",fetch=FetchType.LAZY)
 	private Collection<Presence> presences;
 
 	
 	@OneToMany(mappedBy="utilisateur",fetch=FetchType.LAZY)
 	private Collection<Tache> taches;
+	
+	
 
 
 	
@@ -57,7 +64,7 @@ public class Utilisateur implements Serializable {
 
 
 
-	public Utilisateur(String matricule, String nom, String prenom,String mdp, int age, String sexe, String poste) {
+	public Utilisateur(String matricule, String nom, String prenom,String mdp, int age, String sexe, Poste poste) {
 		super();
 		this.matricule = matricule;
 		this.nom = nom;
@@ -143,14 +150,14 @@ public class Utilisateur implements Serializable {
 
 
 
-	public String getPoste() {
+	public Poste getPoste() {
 		return poste;
 	}
 
 
 
 
-	public void setPoste(String poste) {
+	public void setPoste(Poste poste) {
 		this.poste = poste;
 	}
 

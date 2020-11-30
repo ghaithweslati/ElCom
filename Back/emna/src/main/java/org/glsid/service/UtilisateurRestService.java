@@ -5,7 +5,8 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-
+import org.glsid.beans.Operatrice;
+import org.glsid.beans.Responsable;
 import org.glsid.beans.Utilisateur;
 import org.glsid.metier.UtilisateurMetier;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,11 @@ public  List<Utilisateur> getUtilisateurs() {
 	return userMetier.getUtilisateurs();
 }
 
+@RequestMapping(value="/user/{nom}",method=RequestMethod.GET)
+public  List<Utilisateur> getResponsables(@PathVariable(value = "nom")String nom) {
+	return userMetier.getResponsables(nom);
+}
+
 
 
 
@@ -41,7 +47,17 @@ public  boolean supprimerUtilisateur(@PathVariable(value = "id")String id)
 }
 
 @RequestMapping(value="/user",method=RequestMethod.POST)
-public Utilisateur ajouterProduit(@RequestBody Utilisateur user) {
+public Utilisateur ajouterUtilisateur(@RequestBody Utilisateur user) {
+	return userMetier.ajouterUtilisateur(user);
+}
+
+@RequestMapping(value="/operatrice",method=RequestMethod.POST)
+public Utilisateur ajouterOperatrice(@RequestBody Operatrice user) {
+	return userMetier.ajouterUtilisateur(user);
+}
+
+@RequestMapping(value="/responsable",method=RequestMethod.POST)
+public Utilisateur ajouterResponsable(@RequestBody Responsable user) {
 	return userMetier.ajouterUtilisateur(user);
 }
 

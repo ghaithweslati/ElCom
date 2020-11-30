@@ -19,6 +19,10 @@ public class UtilisateurMetier {
 		return userRepository.findAll();
 	}
 	
+	public List<Utilisateur> getResponsables(String nom)
+	{
+		return userRepository.findByPoste_Nom(nom);
+	}
 	
 
 	public boolean supprimerUtilisateur(String id)
