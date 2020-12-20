@@ -15,6 +15,7 @@ export class CommencerComponent implements OnInit {
 
   tache:Tache = new Tache();
   afficher:Boolean=false;
+  taches=[];
   constructor(private daoService: DaoService,public myapp: AppComponent,
     private router: ActivatedRoute) { 
       myapp.titre="Activite";
@@ -27,6 +28,7 @@ export class CommencerComponent implements OnInit {
     this.daoService.baseUrl="http://localhost:8762/activite";
          this.daoService.getObjet(this.tache.activite.id)
            .subscribe(data => {
+             this.taches=data.taches;
              this.tache.activite.id=data.id;
              this.tache.activite.phase.id=data.phase.id;
              this.afficher=true;
@@ -38,6 +40,10 @@ export class CommencerComponent implements OnInit {
     this.daoService.baseUrl="http://localhost:8762/tache"
     this.tache.dateDeb=new Date().toISOString().substring(0, 10);
     this.tache.dateFin=" ";
+
+
+    //alert(this.taches[this.taches.length-1].dateFin)
+
          this.daoService.ajouterObjet(this.tache)
            .subscribe(data => {
              this.afficher=false;
@@ -46,7 +52,9 @@ export class CommencerComponent implements OnInit {
            }, error => 
            {
             this.tache=new Tache();
-            if((error.error.message).includes("odp"))
+            if((error.error.message).includes("Cette activité n'est en pas encore terminé"))
+              alert("Cette activité n'est en pas encore terminé");
+            else if((error.error.message).includes("odp"))
              alert("Commencement d'activité reussit")
             else
               alert("Matirucle ou Activite inexistant")
@@ -56,6 +64,7 @@ export class CommencerComponent implements OnInit {
           
           );
    
-         }
+         
+        }
 
 }

@@ -58,7 +58,7 @@ export class DashboardComponent implements OnInit {
       if(taches[i].activite.phase.id==id)
         return taches[i].utilisateur.nom+" "+taches[i].utilisateur.prenom
     
-      return 
+      return " "
   }
 
 
@@ -168,28 +168,42 @@ export class DashboardComponent implements OnInit {
 
   getEtat(taches,phases)
   {
-    let nb=0;
+    var array = new Set();
+    var manquant =false;
     if(taches.length==0)
-      return "";
+      return "https://icons.getbootstrap.com/icons/hourglass.svg";
 
       for(let i=0;i<taches.length;i++)
         if(taches[i].dateFin!=" ")
-          nb++;
-      if(nb==phases.length)
-        return "PREPARER";
+        {
+          array.add(taches[i].activite.id);
+          if(taches[i].dateFin.includes("MQ"))
+            manquant=true;
+        }
+      if(array.size==phases.length)
+        if(manquant)
+          return "https://icons.getbootstrap.com/icons/x-circle.svg";
+        else
+          return "https://icons.getbootstrap.com/icons/check2.svg";
       else
-        return "ATTEN PRE";
+        return "https://icons.getbootstrap.com/icons/gear.svg";
   }
 
   verif3(taches,id)
   {
-    for(let i=0;i<taches.length;i++)
+    var obj = {width:"0%",class:"progress-bar bg-info"};
+    var manquant=false;
+    for(let i=taches.length-1;i>=0;i--)
       if(taches[i].activite.phase.id==id)
-      
         if(taches[i].dateFin==" ")
-          return {width:"50%",class:"progress-bar bg-info"}
+          obj= {width:"50%",class:"progress-bar bg-info"}
         else
-        return {width:"100%",class:"progress-bar bg-success"} 
-      return {width:"0%",class:"progress-bar bg-info"}
+          if(taches[i].dateFin.includes("MQ"))
+            manquant=true;
+          else
+        obj= {width:"100%",class:"progress-bar bg-success"} 
+        if(manquant)
+          obj= {width:"100%",class:"progress-bar bg-danger"} 
+      return obj;
   }
 }

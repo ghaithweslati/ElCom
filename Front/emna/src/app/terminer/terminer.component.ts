@@ -32,6 +32,10 @@ export class TerminerComponent implements OnInit {
       
 
       data[0].dateFin=new Date().toISOString().substring(0, 10);
+
+      if(confirm("Terminer cette activite avec manquant ?"))
+        data[0].dateFin+=" MQ";
+
          this.daoService.ajouterObjet(data[0])
            .subscribe(data => {
              this.tache=new Tache();
