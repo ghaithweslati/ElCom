@@ -27,7 +27,7 @@ private TacheMetier tacheMetier;
 
 
 @RequestMapping(value="/tache",method=RequestMethod.POST)
-public Tache ajouterActivite(@RequestBody Tache tache) {
+public Tache ajouterActivite(@RequestBody Tache tache) throws Exception {
 	return tacheMetier.ajouterTache(tache);
 }
 

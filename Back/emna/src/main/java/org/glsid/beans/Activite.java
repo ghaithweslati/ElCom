@@ -1,7 +1,9 @@
 package org.glsid.beans;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,6 +14,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Activite implements Serializable {
@@ -28,7 +32,7 @@ public class Activite implements Serializable {
 	
 	
 	@OneToMany(mappedBy="activite",fetch=FetchType.LAZY)
-	private Collection<Tache> taches;
+	private List<Tache> taches=new ArrayList<>();
 	
 
 	
@@ -61,6 +65,17 @@ public class Activite implements Serializable {
 
 	public void setNom(String nom) {
 		this.nom = nom;
+	}
+
+
+	@JsonIgnore
+	public List<Tache> getTaches() {
+		return taches;
+	}
+
+
+	public void setTaches(List<Tache> taches) {
+		this.taches = taches;
 	}
 
 

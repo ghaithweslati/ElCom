@@ -115,7 +115,6 @@ public class Tache{
 	}
 
 
-
 	public Activite getActivite() {
 		return activite;
 	}
