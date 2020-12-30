@@ -10,6 +10,7 @@ import { OdpComponent } from './odp/odp.component';
 import { UtilisateurComponent } from './utilisateur/utilisateur.component';
 import { LoginComponent } from './login/login.component';
 import { ArticleComponent } from './article/article.component';
+import { ChartsModule} from 'ng2-charts';
 
 import {AutocompleteLibModule} from 'angular-ng-autocomplete';
 import { PhaseComponent } from './phase/phase.component';
@@ -23,6 +24,7 @@ import { CommencerComponent } from './commencer/commencer.component';
 import { TerminerComponent } from './terminer/terminer.component';
 import { OperatriceComponent } from './operatrice/operatrice.component';
 import { PosteComponent } from './poste/poste.component';
+import { StatistiquePresenceComponent } from './statistique-presence/statistique-presence.component';
 
 @NgModule({
   declarations: [
@@ -42,14 +44,16 @@ import { PosteComponent } from './poste/poste.component';
     CommencerComponent,
     TerminerComponent,
     OperatriceComponent,
-    PosteComponent
+    PosteComponent,
+    StatistiquePresenceComponent
   ],
   imports: [
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    AutocompleteLibModule
+    AutocompleteLibModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

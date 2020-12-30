@@ -16,6 +16,7 @@ import { CommencerComponent } from './commencer/commencer.component';
 import { TerminerComponent } from './terminer/terminer.component';
 import { OperatriceComponent } from './operatrice/operatrice.component';
 import { PosteComponent } from './poste/poste.component';
+import {  StatistiquePresenceComponent } from './statistique-presence/statistique-presence.component';
 
 
 const routes: Routes = [
@@ -34,7 +35,8 @@ const routes: Routes = [
   { path: 'commencer', component: CommencerComponent},
   { path: 'terminer', component: TerminerComponent},
   { path: 'poste', component: PosteComponent},
-  { path: 'presence', component: PresenceComponent} 
+  { path: 'presence', component: PresenceComponent} ,
+  { path: 'statistique/presence', component: StatistiquePresenceComponent} 
 ];
 
 @NgModule({

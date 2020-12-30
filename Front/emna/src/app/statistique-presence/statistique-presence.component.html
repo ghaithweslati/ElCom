@@ -1,0 +1,126 @@
+<section class="content">
+    <input   *ngIf="user=='operatrice'" type="email" class="form-control" id="exampleInputEmail1" placeholder="Entrer la matricule" [(ngModel)]="matricule" name="matricule">
+    <select  *ngIf="user=='groupe'"  class="form-control select2" style="width: 100%;" [(ngModel)]="matricule" >
+      <option value="Plan-Log" *ngFor="let resp of responsables" [ngValue]="resp.matricule" >{{resp.nom}} {{resp.prenom}}</option>
+    </select>
+    <br/>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-4">
+          <!-- AREA CHART -->
+          <div class="card card-primary">
+            <div class="card-header">
+              <h3 class="card-title">Utilisateur</h3>
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+              </div>
+            </div>
+            <div class="card-body">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" (click)="initUser('operatrice')" >
+                    <label class="form-check-label" for="exampleRadios1">
+                      Personne
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2" (click)="initUser('groupe')">
+                    <label class="form-check-label" for="exampleRadios2">
+                      Groupe
+                    </label>
+                  </div>
+                  <div class="form-check disabled">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3" (click)="initUser('equipe')" checked> 
+                    <label class="form-check-label" for="exampleRadios3">
+                      Equipe
+                    </label>
+                  </div>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+          <!-- /.card -->
+
+        </div>
+        <!-- /.col (LEFT) -->
+
+
+        <div class="col-md-4">
+            <!-- AREA CHART -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Pie Chart</h3>
+  
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                </div>
+              </div>
+              <div class="card-body">
+                <div style="display: block">
+                    <canvas baseChart
+                            [data]="pieChartData"
+                            [labels]="pieChartLabels"
+                            [chartType]="pieChartType"
+                            (chartHover)="chartHovered($event)"
+                            (chartClick)="chartClicked($event)"></canvas>
+                  </div>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+            <!-- /.card -->
+  
+          </div>
+
+
+        <div class="col-md-4">
+          <!-- LINE CHART -->
+          <div class="card card-info">
+            <div class="card-header">
+              <h3 class="card-title">Durée</h3>
+
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+              </div>
+            </div>
+            <div class="card-body">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exampleRadios2" id="exampleRadios1" value="option1" (click)="initDuree('jour')" checked >
+                    <label class="form-check-label" for="exampleRadios1">
+                      Jour
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exampleRadios2" id="exampleRadios2" value="option2" (click)="initDuree('semaine')">
+                    <label class="form-check-label" for="exampleRadios2">
+                      Semaine
+                    </label>
+                  </div>
+                  <div class="form-check disabled">
+                    <input class="form-check-input" type="radio" name="exampleRadios2" id="exampleRadios3" value="option3" (click)="initDuree('mois')" >
+                    <label class="form-check-label" for="exampleRadios3">
+                      Mois
+                    </label>
+                  </div>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+
+          <!-- BAR CHART -->
+         
+          <!-- STACKED BAR CHART -->
+
+          <!-- /.card -->
+
+        </div>
+        <!-- /.col (RIGHT) -->
+      </div>
+      <!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </section>

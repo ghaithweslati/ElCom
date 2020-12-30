@@ -195,6 +195,18 @@
                           <p>Ajouter une phase</p>
                         </a>
                       </li>
+                      <li class="nav-item">
+                        <a href="../utilisateur" class="nav-link">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Gestion des utilisateurs</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="../poste" class="nav-link">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Gestion des postes</p>
+                        </a>
+                      </li>
                     </ul>
                   </li>
                   <li class="nav-item has-treeview">
@@ -219,6 +231,22 @@
                         </a>
                       </li>
                     </ul>
+                    <li class="nav-item has-treeview">
+                      <a href="../phase" class="nav-link">
+                        <i class="nav-icon fas fa-file-excel"></i>
+                        <p>
+                          Statistique
+                          <i class="right fas fa-angle-left"></i>
+                        </p>
+                      </a>
+                      <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                          <a href="../statistique/presence" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Présence</p>
+                          </a>
+                        </li>
+                      </ul>
             </ul>
           </nav>
           <!-- /.sidebar-menu -->
@@ -250,17 +278,11 @@
         <section class="content">
           <div class="container-fluid">
             <!-- Small boxes (Stat box) -->
-            <div class="col-md">
-              <div class="card card-primary">
-                <div class="card-body p-0">
+
                   <!-- THE CALENDAR -->
             <router-outlet></router-outlet>
     
-          </div>
-          <!-- /.card-body -->
-        </div>
-        <!-- /.card -->
-      </div>
+
           </div><!-- /.container-fluid -->
         </section>
         <!-- /.content -->

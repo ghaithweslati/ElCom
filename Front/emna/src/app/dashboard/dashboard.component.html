@@ -26,10 +26,18 @@
               <label>NB Files</label>
               <input type="text" class="form-control" id="inputEmail3"  required [(ngModel)]="article.nbFile" name="nbFile">
             </div>
-            <!-- /.form-group -->
-
-              
             </div>
+
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Phases</label>
+          <div class="form-check" *ngFor="let phase of phases | async "> 
+            <input type="checkbox" (change)="onCheckboxChange2($event,phase)"  class="form-check-input" id="exampleCheck2">
+            <label class="form-check-label" for="exampleCheck2">{{phase.id }}</label><br/>
+          </div>
+        </div>
+      </div>
             <!-- /.form-group -->
           </div>
           <!-- /.col -->

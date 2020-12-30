@@ -1,6 +1,9 @@
 package org.glsid.metier;
 
 
+import java.time.OffsetDateTime;
+import java.util.List;
+
 import org.glsid.beans.Presence;
 
 import org.glsid.dao.PresenceRepository;
@@ -19,6 +22,12 @@ public class PresenceMetier {
 	{		
 		return this.presenceRepository.save(presence);
 	}
+	
+	public  List<Presence> getPresences(String endDate, String startDate)
+	{		
+		return this.presenceRepository.findAllByDateLessThanEqualAndDateGreaterThanEqual(endDate, startDate);
+	}
+	
 	
 
 

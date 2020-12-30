@@ -79,7 +79,7 @@ export class DashboardComponent implements OnInit {
           this.reloadData();
         }, error => 
         {
-          console.log("Modification du odp échoué")
+          console.log("Modification d'article échoué")
           this.reloadData();
         });
         
@@ -205,5 +205,16 @@ export class DashboardComponent implements OnInit {
         if(manquant)
           obj= {width:"100%",class:"progress-bar bg-danger"} 
       return obj;
+  }
+
+
+  onCheckboxChange2(e,phase:Phase) {
+  
+  
+    if (e.target.checked) {
+      this.article.phases.push(phase);
+    } else {
+      this.article.phases=this.article.phases.filter(function(el) { return el.id != phase.id; });
+    }
   }
 }

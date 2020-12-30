@@ -38,6 +38,12 @@ export class CommencerComponent implements OnInit {
 
   ajouterTache() {
     this.daoService.baseUrl="http://localhost:8762/tache"
+
+    this.daoService.getObjet2(this.tache.utilisateur.matricule," ")
+    .subscribe(data => { 
+    if(data.length>0)
+      alert("Vous ne pouvez commencer une activité que après la clôture d'activité courante")
+    else{
     this.tache.dateDeb=new Date().toISOString().substring(0, 10);
     this.tache.dateFin=" ";
 
@@ -63,8 +69,10 @@ export class CommencerComponent implements OnInit {
           
           
           );
-   
-         
+          }
+        });
+  
         }
-
+        
+      
 }
